@@ -1,9 +1,9 @@
 {
-    "data": {
-      "type": "user",
-      "id": 1,
-      "attributes": {
-        "username": "something_unique"
-      }
+  "data": {
+    "type": "user",
+    "id": 1,
+    "attributes": {
+      "username": "something_unique"
     }
   }
+}
