@@ -1,15 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import questions from "../../data/QuestionnaireData.json"
+import questionData from "../../data/QuestionnaireData.json"
 
-function QuestionnaireData() {
-    const [selectedAnswers, setSelectedAnswers] = useState
+function QuestionCard() {
+    const [selectedAnswers, setSelectedAnswers] = useState({})
     const navigate = useNavigate()
+    const questions = questionData.data
 
-    const handleSelect = (questionId, answer) => {
+    const handleSelect = (questionId, answerId) => {
         setSelectedAnswers({
             ...selectedAnswers,
-            [questionId]: answer,
+            [questionId]: answerId,
         })
     }
 
@@ -25,21 +26,21 @@ function QuestionnaireData() {
         <form onSubmit={handleSubmit}>
             {questions.map((question) =>(
                 <div key={question.id}>
-                    <p>{question.question}</p>
-                    {question.answers.map((answer, index) => (
-                        <label key={index}>
+                    <p>{question.attributes.text}</p>
+                    {question.relationships.answers.data.map((answer) => (
+                        <label key={answer.id}>
                             <input
                             type="radio"
                             name={`question-${question.id}`}
-                            value={answer}
-                            checked={selectedAnswers[question.id] === answer}
-                            onChange={() => handleSelect(question.id, answer)}
+                            value={answer.id}
+                            checked={selectedAnswers[question.id] === answer.id}
+                            onChange={() => handleSelect(question.id, answer.id)}
                             />
+                            {answer.attributes.text}
                         </label>
                     ))}
                 </div>
             ))}
-
             <button type="submit">Submit</button>
         </form>
     )

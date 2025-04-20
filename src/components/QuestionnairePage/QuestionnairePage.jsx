@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import QuestionCard from "../QuestionCard/QuestionCard";
 
 function QuestionnairePage() {
     const navigate = useNavigate()
@@ -15,6 +16,9 @@ function QuestionnairePage() {
                     <button onClick={goToProfile}>Profile</button>
                 </nav>
             </header>
+            <section>
+                <QuestionCard />
+            </section>
         </main>
     )
 }
