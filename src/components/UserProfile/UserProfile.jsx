@@ -10,14 +10,42 @@ function UserProfile() {
     const { currentUser } = location.state || {}
     const [recommendedPets, setRecommendedPets] = useState([])
     console.log(currentUser) 
-    // //current user is null, keeping since I will edit this code on another branch
     const username = currentUser.attributes.username
+
+    useEffect(() => {
+        if (currentUser) {
+            const pets = mockResultData.data.map(submission => {
+                return submission.recommended_animal.data.attributes
+            })
+            setRecommendedPets(pets)
+        }
+    }, [currentUser])
+
+    let petContent;
+
+if (recommendedPets.length > 0) {
+  petContent = recommendedPets.map((pet, index) => (
+    <div key={index}>
+      <p>Type: {pet.type}</p>
+      <img
+        src={pet.photo_url}
+        alt={pet.type}
+        style={{ maxWidth: "300px" }}
+      />
+    </div>
+  ))
+} else {
+  petContent = <p>No recommended pets found.</p>;
+}
+
     return (
         <main>
             <h1> {username}'s' Pet MatchMaker Profile 🐾</h1>
           <nav>
               <button onClick= {goHome}> Welcome Page</button>
           </nav>
+          <h2> Your Recommended Pet Results</h2>
+          <div>{petContent}</div>
         </main>
     );
 }
