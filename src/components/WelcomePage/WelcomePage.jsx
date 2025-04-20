@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 
 
-function WelcomePage() {
+function WelcomePage({ currentUser }) {
     const navigate = useNavigate()
     const goToProfile = () => navigate("/profile")
     const goToQuestionnaire = () => navigate("/questionnaire")

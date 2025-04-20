@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from '../LoginPage/LoginPage'
 import WelcomePage from '../WelcomePage/WelcomePage'
 import ResourcesPage from '../Resources/ResourcesPage'
+import UserProfile from '../UserProfile/UserProfile'
 
 import './App.css'
 import QuestionnairePage from '../QuestionnairePage/QuestionnairePage';
@@ -17,6 +18,8 @@ function App() {
                 <Route path="/welcome" element={<WelcomePage currentUser={currentUser} />} />
                 <Route path='/questionnaire' element={<QuestionnairePage />} />
                 <Route path='/resources' element={<ResourcesPage />} />
+                <Route path="/profile" element={<UserProfile currentUser={currentUser} />} />
+
             </Routes>
         </Router>
     )
