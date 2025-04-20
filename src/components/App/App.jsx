@@ -15,11 +15,10 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<LoginPage setCurrentUser={setCurrentUser} />} />
-                <Route path="/welcome" element={<WelcomePage />} />
+                <Route path="/welcome" element={<WelcomePage currentUser={currentUser} />} />
                 <Route path='/questionnaire' element={<QuestionnairePage />} />
                 <Route path='/resources' element={<ResourcesPage />} />
-                <Route path="/profile" element={<UserProfile currentUser={currentUser} />} />
-
+                <Route path="/profile" element={<UserProfile  />} />
             </Routes>
         </Router>
     )

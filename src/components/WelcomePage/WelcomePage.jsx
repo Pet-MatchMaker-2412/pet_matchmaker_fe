@@ -1,9 +1,8 @@
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 
-
-function WelcomePage() {
+function WelcomePage({ currentUser }) {
     const navigate = useNavigate()
-    const goToProfile = () => navigate("/profile")
+    const goToProfile = () => navigate("/profile", { state: { currentUser } })
     const goToQuestionnaire = () => navigate("/questionnaire")
     const goToResources = () => navigate("/resources")
     return (
