@@ -4,7 +4,7 @@
         "type": "questionnaire_submission",
         "id": 1,
         "attributes": {
-          "recommended_pet_id": 1,
+          "recommended_pet_id": 1
         },
         "relationships": {
           "submission_answers": {
