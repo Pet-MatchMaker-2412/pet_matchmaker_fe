@@ -4,7 +4,7 @@
         "type": "question",
         "id": 1,
         "attributes": {
-          "text": "question?",
+          "text": "question?"
         },
         "relationships": {
           "answers": {
@@ -31,7 +31,7 @@
         "type": "question",
         "id": 2,
         "attributes": {
-          "text": "question2?",
+          "text": "question2?"
         },
         "relationships": {
           "answers": {
