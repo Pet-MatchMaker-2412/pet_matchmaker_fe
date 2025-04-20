@@ -4,6 +4,7 @@ import LoginPage from '../LoginPage/LoginPage'
 import WelcomePage from '../WelcomePage/WelcomePage'
 
 import './App.css'
+import QuestionnairePage from '../QuestionnairePage/QuestionnairePage';
 
 function App() {
     const [currentUser, setCurrentUser] = useState(null)
@@ -13,6 +14,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<LoginPage setCurrentUser={setCurrentUser} />} />
                 <Route path="/welcome" element={<WelcomePage currentUser={currentUser} />} />
+                <Route path='/questionnaire' element={<QuestionnairePage />} />
             </Routes>
         </Router>
     )
