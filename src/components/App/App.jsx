@@ -12,7 +12,7 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<LoginPage setCurrentUser={setCurrentUser} />} />
-                {/* <Route path="/welcome" element={<WelcomePage currentUser={currentUser} />} /> */}
+                <Route path="/welcome" element={<WelcomePage currentUser={currentUser} />} />
             </Routes>
         </Router>
     )
