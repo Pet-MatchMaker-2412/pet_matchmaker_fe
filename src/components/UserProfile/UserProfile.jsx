@@ -9,16 +9,17 @@ function UserProfile({ currentUser }) {
     const goHome = () => navigate("/welcome")
     const [recommendedPets, setRecommendedPets] = useState([])
     console.log(currentUser) 
-    const username = currentUser.attributes.username
+    const username = currentUser?.attributes?.username || "Guest"
 
     useEffect(() => {
-        if (currentUser) {
+        // if (currentUser) {
             const pets = mockResultData.data.map(submission => {
                 return submission.recommended_animal.data.attributes
             })
             setRecommendedPets(pets)
-        }
-    }, [currentUser])
+        // }
+    }, [])
+    // change back to [currentUser] on line 21 when BE data is available, we want it to change state based on currentUser
 
     let petContent
 
