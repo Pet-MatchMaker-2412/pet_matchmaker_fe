@@ -1,14 +1,12 @@
-import { useLocation } from "react-router-dom";
+
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import mockResultData from '../../data/QuestionnaireSubmissionData.json'
 
-function UserProfile() {
-    const location = useLocation()
+function UserProfile({ currentUser }) {
     const navigate = useNavigate()
     const goToResults = () => navigate("/results")
     const goHome = () => navigate("/welcome")
-    const { currentUser } = location.state || {}
     const [recommendedPets, setRecommendedPets] = useState([])
     console.log(currentUser) 
     const username = currentUser.attributes.username
