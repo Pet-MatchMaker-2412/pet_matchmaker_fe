@@ -26,6 +26,8 @@ function App() {
                 <Route path="/profile" element={<UserProfile currentUser={currentUser} savedPets={savedPets}/>} />
                 <Route path="/resources" element={<ResourcesPage />} />
                 <Route path='/questionnaire' element={<QuestionnairePage />} />
+                <Route path='/resources' element={<ResourcesPage />} />
+                <Route path="/profile" element={<UserProfile  />} />
                 <Route path='/results' element={<UserResults matchResults={matchResults} saveMatch={saveMatch}/>} />
             </Routes>
         </Router>
