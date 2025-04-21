@@ -11,7 +11,7 @@ import './App.css'
 
 function App() {
     const [currentUser, setCurrentUser] = useState(null)
-    const [matchResults, setMatchResults] = useState("Golden Retriver")
+    const [matchResults, setMatchResults] = useState(null)
     const [savedPets, setSavedPets] = useState([])
 
     const saveMatch = (pet) => {
@@ -22,7 +22,9 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" element={<LoginPage setCurrentUser={setCurrentUser} />} />
-                <Route path="/welcome" element={<WelcomePage currentUser={currentUser} />} />
+                <Route path="/welcome" element={<WelcomePage />} />
+                <Route path="/profile" element={<UserProfile currentUser={currentUser} savedPets={savedPets}/>} />
+                <Route path="/resources" element={<ResourcesPage />} />
                 <Route path='/questionnaire' element={<QuestionnairePage />} />
                 <Route path='/resources' element={<ResourcesPage />} />
                 <Route path="/profile" element={<UserProfile  />} />
