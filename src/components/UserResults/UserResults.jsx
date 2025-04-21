@@ -39,6 +39,10 @@ function UserResults({ matchResults, saveMatch }) {
                     <input
                         id="zip"
                         type="text"
+                        pattern="\d{5}"
+                        maxLength="5"
+                        minLength="5"
+                        title="Please enter 5-digit zip-code"
                         value={zipCode}
                         onChange={(e) => setZipCode(e.target.value)}
                         required
