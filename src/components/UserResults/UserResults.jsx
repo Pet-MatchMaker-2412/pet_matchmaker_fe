@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import resultsData from "../../data/QuestionnaireSubmissionData.json"
+// 
 
 
 function UserResults({ matchResults, saveMatch }) {
@@ -10,18 +10,13 @@ function UserResults({ matchResults, saveMatch }) {
     const goToProfile = () => navigate("/profile")
 
     const saveCurrentMatch = () => {
-        const results = resultsData.data[0]
-        const pet = {
-          type: results.recommended_animal.data.type,
-          photo_url: results.recommended_animal.data.attributes.photo_url,
-        }
-        saveMatch(pet)
+       saveMatch(matchResults)
       }
 
-    const saveCurrentMatch = () => saveMatch(matchResults)
-    const results = resultsData.data[0]
-    const petType = results.recommended_animal.data.type
-    const petPhoto = results.recommended_animal.data.attributes.photo_url
+    // const saveCurrentMatch = () => saveMatch(matchResults)
+    // const results = resultsData.data[0]
+    // const petType = results.recommended_animal.data.type
+    // const petPhoto = results.recommended_animal.data.attributes.photo_url
 
     const handleZipSubmit = (e) => {
         e.preventDefault()
@@ -39,8 +34,8 @@ function UserResults({ matchResults, saveMatch }) {
             </header>
             <section>
                 <h2>Your Suggested Pet:</h2>
-                <p>{petType}</p>
-                <img src={petPhoto} alt={`A cute little ${petType}`} />
+                <p>{matchResults.type}</p>
+                <img src={matchResults.photo_url} alt={`A cute little ${matchResults.type}`} />
                 <button onClick={saveCurrentMatch}>Save Pet</button>
             </section>
             <section>

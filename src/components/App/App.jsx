@@ -6,12 +6,17 @@ import ResourcesPage from '../Resources/ResourcesPage'
 import UserProfile from '../UserProfile/UserProfile'
 import QuestionnairePage from '../QuestionnairePage/QuestionnairePage';
 import UserResults from '../UserResults/UserResults';
+import resultsData from "../../data/QuestionnaireSubmissionData.json"
+
 import './App.css'
 
 
 function App() {
     const [currentUser, setCurrentUser] = useState(null)
-    const [matchResults, setMatchResults] = useState(null)
+    const [matchResults, setMatchResults] = useState(() => {
+        const mockPet = resultsData.data[0].recommended_animal.data.attributes
+        return mockPet
+      })
     const [savedPets, setSavedPets] = useState([])
 
     const saveMatch = (pet) => {
