@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import mockResultData from '../../data/QuestionnaireSubmissionData.json'
 
-function UserProfile({ currentUser }) {
+function UserProfile({ currentUser, savedPets }) {
     const navigate = useNavigate()
     const goToResults = () => navigate("/results")
     const goHome = () => navigate("/welcome")
