@@ -21,7 +21,7 @@ function UserProfile() {
         }
     }, [currentUser])
 
-    let petContent;
+    let petContent
 
 if (recommendedPets.length > 0) {
   petContent = recommendedPets.map((pet, index) => (
@@ -30,7 +30,6 @@ if (recommendedPets.length > 0) {
       <img
         src={pet.photo_url}
         alt={pet.type}
-        style={{ maxWidth: "300px" }}
       />
     </div>
   ))
@@ -40,7 +39,7 @@ if (recommendedPets.length > 0) {
 
     return (
         <main>
-            <h1> {username}'s' Pet MatchMaker Profile 🐾</h1>
+            <h1> {username}'s Pet MatchMaker Profile 🐾</h1>
           <nav>
               <button onClick= {goHome}> Welcome Page</button>
           </nav>
