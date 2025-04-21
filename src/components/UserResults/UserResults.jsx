@@ -8,7 +8,14 @@ function UserResults({ matchResults, saveMatch }) {
     const navigate = useNavigate()
     const goHome = () => navigate("/welcome")
     const goToProfile = () => navigate("/profile")
-    const saveCurrentMatch = () => saveMatch(matchResults)
+    const saveCurrentMatch = () => {
+        const results = resultsData.data[0]
+        const pet = {
+          type: results.recommended_animal.data.type,
+          photo_url: results.recommended_animal.data.attributes.photo_url,
+        }
+        saveMatch(pet)
+      }
     const results = resultsData.data[0]
     const petType = results.recommended_animal.data.type
     const petPhoto = results.recommended_animal.data.attributes.photo_url

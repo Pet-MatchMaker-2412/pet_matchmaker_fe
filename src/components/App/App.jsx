@@ -11,7 +11,7 @@ import './App.css'
 
 function App() {
     const [currentUser, setCurrentUser] = useState(null)
-    const [matchResults, setMatchResults] = useState("Golden Retriver")
+    const [matchResults, setMatchResults] = useState(null)
     const [savedPets, setSavedPets] = useState([])
 
     const saveMatch = (pet) => {
