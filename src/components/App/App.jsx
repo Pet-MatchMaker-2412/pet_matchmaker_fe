@@ -23,6 +23,8 @@ function App() {
             <Routes>
                 <Route path="/" element={<LoginPage setCurrentUser={setCurrentUser} />} />
                 <Route path="/welcome" element={<WelcomePage currentUser={currentUser} />} />
+                <Route path="/profile" element={<UserProfile />} />
+                <Route path="/resources" element={<ResourcesPage />} />
                 <Route path='/questionnaire' element={<QuestionnairePage />} />
                 <Route path='/results' element={<UserResults matchResults={matchResults} saveMatch={saveMatch}/>} />
             </Routes>

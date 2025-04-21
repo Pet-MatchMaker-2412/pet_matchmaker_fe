@@ -6,6 +6,7 @@ import mockResultData from '../../data/QuestionnaireSubmissionData.json'
 function UserProfile() {
     const location = useLocation()
     const navigate = useNavigate()
+    const goToResults = () => navigate("/results")
     const goHome = () => navigate("/welcome")
     const { currentUser } = location.state || {}
     const [recommendedPets, setRecommendedPets] = useState([])
@@ -31,10 +32,13 @@ if (recommendedPets.length > 0) {
         src={pet.photo_url}
         alt={pet.type}
       />
+      <h2> This is where the quiz summary will go. </h2>
+      <button onClick= {goToResults}> Click for more! </button>
     </div>
+    
   ))
 } else {
-  petContent = <p>No recommended pets found.</p>;
+  petContent = <p>No recommended pets found.</p>
 }
 
     return (
@@ -46,6 +50,6 @@ if (recommendedPets.length > 0) {
           <h2> Your Recommended Pet Results</h2>
           <div>{petContent}</div>
         </main>
-    );
+    )
 }
 export default UserProfile;
