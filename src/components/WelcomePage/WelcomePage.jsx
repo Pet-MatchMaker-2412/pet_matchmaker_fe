@@ -1,11 +1,6 @@
-import { useNavigate } from "react-router-dom"
 import { Link } from "react-router-dom"
 
 function WelcomePage() {
-    const navigate = useNavigate()
-    const goToProfile = () => navigate("/profile")
-    const goToQuestionnaire = () => navigate("/questionnaire")
-    const goToResources = () => navigate("/resources")
     return (
       <main>
       <header>
