@@ -5,7 +5,7 @@ describe('LoginPage spec', () => {
 
   it("should display the login form with input and login button", () => {
     cy.get('h1').should("contain", "Login")
-    cy.get('input[placeholder="Enter Username"]')
+    .get('input[placeholder="Enter Username"]')
     .get('button').contains("Login").should("exist")
     .get('h1').should("contain", "Login")
   })

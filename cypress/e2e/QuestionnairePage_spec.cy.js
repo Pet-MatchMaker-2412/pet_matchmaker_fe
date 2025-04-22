@@ -4,7 +4,6 @@ describe('QuestionnairePage spec', () => {
   })
 
   it("should display the nav buttons and question content", () => {
-    cy.contains('Pet MatchMaker')
     cy.get('h1').should("contain", "Pet MatchMaker")
     .get("button").contains("Home").should("exist")
     .get("button").contains("Profile").should("exist")
