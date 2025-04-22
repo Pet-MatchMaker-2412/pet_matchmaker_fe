@@ -17,7 +17,7 @@ function QuestionCard() {
     const handleSubmit = (e) => {
         e.preventDefault(); 
 
-        // add validation
+        // add validation here
         console.log("Submitted Answers:", selectedAnswers)
         navigate("/results")
     }
