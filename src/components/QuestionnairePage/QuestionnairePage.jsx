@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react"
 import QuestionCard from "../QuestionCard/QuestionCard";
+
 
 function QuestionnairePage() {
     const navigate = useNavigate()
