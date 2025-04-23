@@ -32,9 +32,9 @@ function PetFinderResults() {
               <p>Size: {pet.size}</p>
               <p>Location: {pet.city}, {pet.state}</p>
               <p>Description: {pet.description}</p>
-              <button onClick={() => window.location.href = `mailto:${pet.email}`}>
-              Inquire About {pet.name}
-            </button>
+              <a href={`mailto:${pet.email}`}>
+                  <button>Inquire About {pet.name}</button>
+              </a>
             </article>
           </section>
         </main>
