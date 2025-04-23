@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import questionData from "../../data/QuestionnaireData.json"
 
 function QuestionCard() {
     const [selectedAnswers, setSelectedAnswers] = useState({})
