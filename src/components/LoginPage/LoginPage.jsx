@@ -10,6 +10,9 @@ function LoginPage({ setCurrentUser }) {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        fetch("http://localhost:3000/api/v1/users")
+
+
         if (!username.trim()) {
             setError("Please enter a valid username")
             return
