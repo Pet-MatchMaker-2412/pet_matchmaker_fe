@@ -13,14 +13,15 @@ function UserResults({ matchResults, saveMatch }) {
        saveMatch(matchResults)
       }
 
-    // const saveCurrentMatch = () => saveMatch(matchResults)
-    // const results = resultsData.data[0]
-    // const petType = results.recommended_animal.data.type
-    // const petPhoto = results.recommended_animal.data.attributes.photo_url
-
+   
     const handleZipSubmit = (e) => {
         e.preventDefault()
-        navigate("/petfinder")
+        navigate("/petfinder", {
+            state: {
+                zipCode,
+                matchResults
+            }
+        })
     };
 
     return (
