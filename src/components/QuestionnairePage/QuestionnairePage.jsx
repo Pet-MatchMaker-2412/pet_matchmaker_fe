@@ -5,9 +5,17 @@ import QuestionCard from "../QuestionCard/QuestionCard";
 
 function QuestionnairePage() {
     const navigate = useNavigate()
+    const [questions, setQuestions] = useState([])
 
     const goHome = () => navigate("/welcome")
     const goToProfile = () => navigate("/profile")
+
+    useEffect(() => {
+        fetch("http://localhost:3000/api/v1/questions")
+        .then((response) => response.json())
+        .then((data) => setQuestions(data.data))
+        .catch((err) => console.error("Failed to fetch questions:", err))
+    }, [])
 
     return (
         <main>
@@ -19,7 +27,7 @@ function QuestionnairePage() {
                 </nav>
             </header>
             <section>
-                <QuestionCard />
+                <QuestionCard questions={questions} />
             </section>
         </main>
     )
