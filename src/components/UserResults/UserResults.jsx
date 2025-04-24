@@ -8,6 +8,8 @@ function UserResults({ matchResults, saveMatch }) {
     const goHome = () => navigate("/welcome")
     const goToProfile = () => navigate("/profile")
 
+    
+
     const saveCurrentMatch = () => {
        saveMatch(matchResults)
       }
