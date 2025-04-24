@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import QuestionCard from "../QuestionCard/QuestionCard";
 
 
-function QuestionnairePage() {
+function QuestionnairePage({ setMatchResults }) {
     const navigate = useNavigate()
     const [questions, setQuestions] = useState([])
 
