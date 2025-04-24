@@ -23,13 +23,13 @@ function LoginPage({ setCurrentUser }) {
               throw new Error(`Response status: ${response.status}`);
             }
         
-            const data = await response.json();
-            if (!data) {
+            const user_info = await response.json();
+            if (!user_info) {
               setError("User name not found");
               return;
             }
-        console.log("USER:",data)
-            setCurrentUser(data); 
+        console.log("USER:",user_info.data)
+            setCurrentUser(user_info); 
             navigate("/welcome");
           } catch (error) {
             console.error(error.message);
