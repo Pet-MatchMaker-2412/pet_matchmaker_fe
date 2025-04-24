@@ -10,10 +10,10 @@ function UserResults({ matchResults, saveMatch }) {
     const goToProfile = () => navigate("/profile")
 
     const saveCurrentMatch = () => {
-       saveMatch(matchResults)
-      }
+        saveMatch(matchResults)
+        }
 
-   
+
     const handleZipSubmit = (e) => {
         e.preventDefault()
         navigate("/petfinder", {
