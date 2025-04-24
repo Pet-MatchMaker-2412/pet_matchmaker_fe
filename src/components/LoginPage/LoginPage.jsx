@@ -18,12 +18,9 @@ function LoginPage({ setCurrentUser }) {
         }
 
         try {
+            if ( mode === "login") {
             const response = await fetch(`http://localhost:3000/api/v1/users?username=${username}`);
-
-            
-            if (!response.ok) {
-              throw new Error(`Response status: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`Response status: ${response.status}`);
         
             const user_info = await response.json();
             if (!user_info) {
