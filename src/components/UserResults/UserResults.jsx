@@ -8,6 +8,7 @@ function UserResults({ matchResults, saveMatch }) {
     const navigate = useNavigate()
     const goHome = () => navigate("/welcome")
     const goToProfile = () => navigate("/profile")
+    const [alertMessage, setAlertMessage] = useState("")
 
     const saveCurrentMatch = () => {
         saveMatch(matchResults)
