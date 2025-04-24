@@ -33,7 +33,6 @@ function App() {
                 <Route path="/resources" element={<ResourcesPage />} />
                 <Route path='/questionnaire' element={<QuestionnairePage setMatchResults={setMatchResults}/>} />
                 <Route path='/resources' element={<ResourcesPage />} />
-                <Route path="/profile" element={<UserProfile  />} />
                 <Route path='/results' element={<UserResults matchResults={matchResults} saveMatch={saveMatch}/>} />
                 <Route path='/petfinder' element={<PetFinderResults />} />
             </Routes>
