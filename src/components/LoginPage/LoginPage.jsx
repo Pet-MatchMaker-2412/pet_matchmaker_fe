@@ -12,26 +12,53 @@ function LoginPage({ setCurrentUser }) {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
+        const url = `http://localhost:3000/api/v1/users?username=${username}`
+
         if (!username.trim()) {
             setError("Please enter a valid username")
             return
-        }
+            }
 
         try {
             if ( mode === "login") {
-            const response = await fetch(`http://localhost:3000/api/v1/users?username=${username}`);
-            if (!response.ok) throw new Error(`Response status: ${response.status}`);
+            const responseForExistingUser = await fetch(url);
+            if (!responseForExistingUser.ok) throw new Error(`Response status: ${responseForExistingUser.status}`);
         
             const user_info = await response.json();
             if (!user_info) {
-              setError("User name not found");
+              setError("Hmm, we didn't find that Username. Try Again?");
               return;
             }
 
-        console.log("USER:",user_info.data)
+            console.log("USER:",user_info.data)
             setCurrentUser(user_info); 
             navigate("/welcome");
-        
+            
+            } else if (mode === "signup") {
+            const responseForNewUser = await fetch(url);
+            if (responseForNewUser.ok) {
+                setError("Username aleady exists");
+                return;
+            }
+
+            const addNewUserResponse = await fetch("http://localhost:3000/api/v1/users", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ username })
+            });
+
+            if (!addNewUserResponse.ok) {
+                const errorData = await signupResponse.json();
+                console.log("ErrorData:", errorData)
+                throw new Error(errorData.errors?.[0]?.detail || "Failed to create user");
+            }
+
+            const newUser = await addNewUserResponse.json();
+            setCurrentUser(newUser)
+            navigate("/welcome");
+        } 
           } catch (error) {
             console.error(error.message);
             setError(error.message || "An error occurred during login.");
@@ -40,7 +67,7 @@ function LoginPage({ setCurrentUser }) {
 
     return (
         <main>
-            <h1>Login</h1>
+            <h1>{mode === "login" ? "Login" : "Sign Up"}</h1>
             <form className="login-form" onSubmit={handleSubmit}>
                 <input
                     type="text"
