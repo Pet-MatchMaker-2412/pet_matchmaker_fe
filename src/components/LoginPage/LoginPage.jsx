@@ -33,7 +33,7 @@ function LoginPage({ setCurrentUser }) {
             navigate("/welcome");
           } catch (error) {
             console.error(error.message);
-            setError("An error occurred during login.");
+            setError(error.message || "An error occurred during login.");
           }
     }
 
