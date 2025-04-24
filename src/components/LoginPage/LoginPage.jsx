@@ -28,8 +28,12 @@ function LoginPage({ setCurrentUser }) {
               setError("User name not found");
               return;
             }
-        console.log("USER:",user_info.data)
-            setCurrentUser(user_info); 
+    
+            setCurrentUser({
+                id: user_info.data.id,
+                username: user_info.data.attributes.username
+            })
+
             navigate("/welcome");
           } catch (error) {
             console.error(error.message);
