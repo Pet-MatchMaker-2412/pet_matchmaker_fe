@@ -43,6 +43,8 @@ function UserResults({ matchResults, saveMatch }) {
                 <p>{matchResults.type}</p>
                 <img src={matchResults.photo_url} alt={`A cute little ${matchResults.type}`} />
                 <button onClick={saveCurrentMatch}>Save Pet</button>
+
+                {alertMessage ? <p>{alertMessage}</p> : null}
             </section>
             <section>
                 <form onSubmit={handleZipSubmit}>
