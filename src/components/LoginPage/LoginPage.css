@@ -13,10 +13,11 @@
   font-size: 1rem;
 }
 
-.log-in-button {
+.login-button {
   width: 250px;
   padding: 10px;
   font-size: 1rem;
   cursor: pointer;
   display: flex;
+  flex-wrap: wrap;
 }
