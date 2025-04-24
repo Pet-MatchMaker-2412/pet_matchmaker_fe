@@ -27,9 +27,11 @@ function LoginPage({ setCurrentUser }) {
               setError("User name not found");
               return;
             }
+
         console.log("USER:",user_info.data)
             setCurrentUser(user_info); 
             navigate("/welcome");
+        
           } catch (error) {
             console.error(error.message);
             setError(error.message || "An error occurred during login.");
