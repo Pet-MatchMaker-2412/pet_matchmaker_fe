@@ -12,8 +12,12 @@ function UserResults({ matchResults, saveMatch }) {
 
     const saveCurrentMatch = () => {
         saveMatch(matchResults)
-        }
-
+        setAlertMessage("Your pet was successfully saved!")
+    
+        setTimeout(() => {
+            setAlertMessage("");
+        }, 3000);
+    }
 
     const handleZipSubmit = (e) => {
         e.preventDefault()
