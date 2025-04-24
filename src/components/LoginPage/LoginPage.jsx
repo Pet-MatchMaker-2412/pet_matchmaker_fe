@@ -5,8 +5,9 @@ import './LoginPage.css'
 
 function LoginPage({ setCurrentUser }) {
     const [username, setUsername] = useState("")
-    const [error, setError] = useState(null)
-    const navigate = useNavigate()
+    const [error, setError]       = useState(null)
+    const [mode, setMode]         = useState("login")
+    const navigate                = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
