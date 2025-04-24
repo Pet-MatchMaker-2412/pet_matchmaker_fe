@@ -12,26 +12,43 @@
   font-size: 1rem;
 }
 
-.login-button {
+.existing-user-login-button {
   width: 250px;
   padding: 10px;
   font-size: 1rem;
   cursor: pointer;
   display: inline-block;
   flex-wrap: wrap;
-  margin-top: 35px;
+  margin-top: 20px;
 }
 
-.login-button:hover {
+.existing-user-login-button:hover {
   background-color: #333; 
   color: white;         
   transition: background-color 0.3s ease;
 } 
 
+.new-user-login-button {
+  width: 250px;
+  padding: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  display: inline-block;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
 .existing-user1 {
-margin-top: 26px;
+  margin-top: 26px;
 }
 
 .existing-user2 {
-margin-top: 20px;
+  margin-top: 20px;
+}
+
+.new-user1 {
+  margin-top: 80px;
+}
+.new-user2 {
+  margin-top: 26px;
 }

@@ -50,12 +50,13 @@ function LoginPage({ setCurrentUser }) {
                 />
                 <p className="existing-user1">Existing User?</p>
                 <p className="existing-user2">Welcome Back! Enter Username & Press Login Button Below!</p>
-                <button className="login-button" type="submit">Login Existing User</button>
-            {error && <p style={{ color: 'red' }}>{error}</p>}
-
+                <button className="existing-user-login-button" type="submit">Login Existing User</button>
+           
                 <p className="new-user1">New User?</p>
                 <p className="new-user2">Welcome! Enter Username & Press Sign Up Button Below!</p>
-                <button className="login-button" type="submit">Sign Up New User</button>
+                <button className="new-user-login-button" type="submit">Sign Up New User</button>
+
+                {error && <p style={{ color: 'red' }}>{error}</p>}
             </form>       
         </main>
     )
