@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function QuestionCard({questions}) {
+function QuestionCard({questions, setMatchResults}) {
     const [selectedAnswers, setSelectedAnswers] = useState({})
     const navigate = useNavigate()
 
@@ -20,10 +20,11 @@ function QuestionCard({questions}) {
     
         if (totalAnswered < totalQuestions) {
                 alert("Please answer all questions before submitting.")
-                return
+            return
         }
-   
-        console.log("Submitted Answers:", selectedAnswers)
+
+        const answerIds = Object.values(selectedAnswers)
+        
         navigate("/results")
     }
 
