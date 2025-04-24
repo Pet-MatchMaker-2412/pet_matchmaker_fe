@@ -68,6 +68,25 @@ function LoginPage({ setCurrentUser }) {
     return (
         <main>
             <h1>{mode === "login" ? "Login" : "Sign Up"}</h1>
+
+            <div classname="mode-toggle">
+                <button 
+                    type="button"
+                    className={mode === "login" ? "active" : ""}
+                    onClick={() => setMode("login")}
+                >
+                    Login
+                </button>
+                <button 
+                    type="button"
+                    className={mode === "login" ? "active" : ""}
+                    onClick={() => setMode("login")}
+                    >
+                    Sign Up
+                    </button>
+                </div>
+
+
             <form className="login-form" onSubmit={handleSubmit}>
                 <input
                     type="text"
