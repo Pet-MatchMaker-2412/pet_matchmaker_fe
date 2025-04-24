@@ -14,9 +14,15 @@
   margin-top: 20px;
 }
 
+
+.login-form input,
 .login-form button {
-  padding: 8px 16px;
+  width: 250px;
+  padding: 10px;
   font-size: 1rem;
+}
+
+.login-form button {
   cursor: pointer;
 }
 

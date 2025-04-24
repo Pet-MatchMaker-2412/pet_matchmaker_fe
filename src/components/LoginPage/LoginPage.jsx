@@ -40,7 +40,7 @@ function LoginPage({ setCurrentUser }) {
     return (
         <main>
             <h1>Login</h1>
-            <form onSubmit={handleSubmit}>
+            <form className="login-form" onSubmit={handleSubmit}>
                 <input
                     type="text"
                     placeholder="Enter Username"
