@@ -22,7 +22,7 @@ function QuestionCard({questions}) {
                 alert("Please answer all questions before submitting.")
                 return
         }
-    
+   
         console.log("Submitted Answers:", selectedAnswers)
         navigate("/results")
     }
