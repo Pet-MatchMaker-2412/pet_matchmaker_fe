@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column; 
   align-items: center;     
-  gap: 12px;              
   margin-top: 20px;
 }
 
@@ -21,4 +20,18 @@
   display: inline-block;
   flex-wrap: wrap;
   margin-top: 35px;
+}
+
+.login-button:hover {
+  background-color: #333; 
+  color: white;         
+  transition: background-color 0.3s ease;
+} 
+
+.existing-user1 {
+margin-top: 26px;
+}
+
+.existing-user2 {
+margin-top: 20px;
 }
