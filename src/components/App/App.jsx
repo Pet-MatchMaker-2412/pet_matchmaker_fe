@@ -14,12 +14,12 @@ import './App.css'
 
 function App() {
     const [currentUser, setCurrentUser] = useState(null)
+    const [savedPets, setSavedPets] = useState([])
     const [matchResults, setMatchResults] = useState(() => {
         const mockPet = resultsData.data[0].recommended_animal.data.attributes
         return mockPet
-      })
-    const [savedPets, setSavedPets] = useState([])
-
+    })
+    
     const saveMatch = (pet) => {
         setSavedPets([...savedPets, pet])
     }
