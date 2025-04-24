@@ -27,7 +27,7 @@ function QuestionnairePage({ setMatchResults }) {
                 </nav>
             </header>
             <section>
-                <QuestionCard questions={questions} />
+                <QuestionCard questions={questions} setMatchResults={setMatchResults} />
             </section>
         </main>
     )
