@@ -6,12 +6,20 @@
 }
 
 
-.login-form input {
-  margin-bottom: 10px;
-  width: 250px;
-  padding: 8px;
-  font-size: 1rem;
+.login-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  gap: 10px; 
+  margin-top: 20px;
 }
+
+.login-form button {
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
 
 .error-message {
   color: red;
