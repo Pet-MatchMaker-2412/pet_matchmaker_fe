@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom"
 import mockUser from "../../data/UserData.json"
+import './LoginPage.css'
 
 function LoginPage({ setCurrentUser }) {
     const [username, setUsername] = useState("")
