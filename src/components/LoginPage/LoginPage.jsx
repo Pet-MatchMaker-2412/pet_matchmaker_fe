@@ -29,7 +29,7 @@ function LoginPage({ setCurrentUser }) {
               return;
             }
         console.log("USER:",user_info.data)
-            setCurrentUser(user_info); 
+            setCurrentUser(user_info.data); 
             navigate("/welcome");
           } catch (error) {
             console.error(error.message);
