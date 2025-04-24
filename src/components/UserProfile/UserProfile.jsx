@@ -1,18 +1,15 @@
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 
 function UserProfile({ currentUser, savedPets }) {
-    const navigate = useNavigate()
-    const goToResults = () => navigate("/results")
-    const goHome = () => navigate("/welcome")
-    const username = currentUser?.attributes?.username || "Guest"
-
-console.log(savedPets);  
+    const username = currentUser?.attributes?.username || "Guest" 
 
     return (
         <main>
             <h1>{username}'s Pet MatchMaker Profile 🐾</h1>
             <nav>
-                <button onClick={goHome}>Welcome Page</button>
+                <Link to="/welcome">
+                    <button>Welcome Page</button>
+                </Link>
             </nav>
             <h2>Your Saved Pet Results</h2>
             <div>
@@ -21,7 +18,9 @@ console.log(savedPets);
                         <div key={index}>
                             <p>Type: {pet.type}</p>
                             <img src={pet.photo_url} alt={pet.type} />
-                            <button onClick={goToResults}>Click for more!</button>
+                            <Link to="/results">
+                                <button>Click for more!</button>
+                            </Link>
                         </div>
                     ))
                 ) : (
