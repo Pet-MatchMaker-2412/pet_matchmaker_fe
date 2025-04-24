@@ -47,7 +47,7 @@ function LoginPage({ setCurrentUser }) {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                 />
-                <button type="submit">Login</button>
+                <button className="log-in-button" type="submit">Login</button>
             </form>
             {error && <p style={{ color: 'red' }}>{error}</p>}
         </main>
