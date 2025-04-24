@@ -7,19 +7,34 @@ function LoginPage({ setCurrentUser }) {
     const [error, setError] = useState(null)
     const navigate = useNavigate()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
-
-        fetch("http://localhost:3000/api/v1/users")
-
 
         if (!username.trim()) {
             setError("Please enter a valid username")
             return
         }
 
-        setCurrentUser(mockUser.data)
-        navigate("/welcome")
+        try {
+            const response = await fetch(`http://localhost:3000/api/v1/users?username=${username}`);
+
+            
+            if (!response.ok) {
+              throw new Error(`Response status: ${response.status}`);
+            }
+        
+            const data = await response.json();
+            if (!data) {
+              setError("User name not found");
+              return;
+            }
+        console.log("USER:",data)
+            setCurrentUser(data); 
+            navigate("/welcome");
+          } catch (error) {
+            console.error(error.message);
+            setError("An error occurred during login.");
+          }
     }
 
     return (
