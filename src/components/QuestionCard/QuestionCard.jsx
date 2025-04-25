@@ -1,11 +1,9 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import questionData from "../../data/QuestionnaireData.json"
 
-function QuestionCard() {
+function QuestionCard({questions}) {
     const [selectedAnswers, setSelectedAnswers] = useState({})
     const navigate = useNavigate()
-    const questions = questionData.data
 
     const handleSelect = (questionId, answerId) => {
         setSelectedAnswers({
@@ -15,9 +13,16 @@ function QuestionCard() {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault(); 
-
-        // add validation
+        e.preventDefault()
+    
+        const totalQuestions = questions.length
+        const totalAnswered = Object.keys(selectedAnswers).length
+    
+        if (totalAnswered < totalQuestions) {
+                alert("Please answer all questions before submitting.")
+                return
+        }
+   
         console.log("Submitted Answers:", selectedAnswers)
         navigate("/results")
     }
@@ -27,7 +32,7 @@ function QuestionCard() {
             {questions.map((question) =>(
                 <div key={question.id}>
                     <p>{question.attributes.text}</p>
-                    {question.relationships.answers.data.map((answer) => (
+                    {question.attributes.answers.map((answer) => (
                         <label key={answer.id}>
                             <input
                             type="radio"
