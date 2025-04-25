@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 
-function UserResults({ currentUser matchResults, saveMatch }) {
+function UserResults({ matchResults, saveMatch }) {
     const [zipCode, setZipCode] = useState("")
     const navigate = useNavigate()
     const goHome = () => navigate("/welcome")
@@ -11,10 +11,10 @@ function UserResults({ currentUser matchResults, saveMatch }) {
     
 
     const saveCurrentMatch = () => {
-       saveMatch(matchResults)
-      }
+        saveMatch(matchResults)
+        }
 
-   
+
     const handleZipSubmit = (e) => {
         e.preventDefault()
         navigate("/petfinder", {
@@ -36,8 +36,9 @@ function UserResults({ currentUser matchResults, saveMatch }) {
             </header>
             <section>
                 <h2>Your Suggested Pet:</h2>
-                <p>{matchResults.type}</p>
-                <img src={matchResults.photo_url} alt={`A cute little ${matchResults.type}`} />
+                <p>{matchResults.animal_type}</p>
+                <img src={matchResults.photo_url} alt={`A cute little ${matchResults.animal_type}`} />
+                <p>{matchResults.description}</p>
                 <button onClick={saveCurrentMatch}>Save Pet</button>
             </section>
             <section>
