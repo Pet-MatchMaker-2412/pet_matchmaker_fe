@@ -10,7 +10,7 @@ function ResourcesPage() {
             </section>
 
             <section>
-                <h2>🐕 Service Animals</h2>
+                <h2> 🦮 Service Animals</h2>
                 <p>
                     Looking to learn more about service animals and their roles? From emotional support to trained medical alert animals, there are a variety of types and designations. Service animals are protected by federal law and have specific rights and responsibilities.
                 </p>
