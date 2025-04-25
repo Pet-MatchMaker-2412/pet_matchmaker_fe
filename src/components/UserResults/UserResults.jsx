@@ -5,18 +5,26 @@ import { useState } from "react";
 
 function UserResults({ matchResults, saveMatch }) {
     const [zipCode, setZipCode] = useState("")
-    const navigate = useNavigate()
-    const goHome = () => navigate("/welcome")
-    const goToProfile = () => navigate("/profile")
     const [alertMessage, setAlertMessage] = useState("")
+    const navigate = useNavigate()
 
     const saveCurrentMatch = () => {
-        saveMatch(matchResults)
-        setAlertMessage("Your pet was successfully saved!")
-    
-        setTimeout(() => {
-            setAlertMessage("");
-        }, 3000);
+        const duplicate = savedPets.find((pet) => {
+            return pet.recommended_animal.id === matchResults.recommended_animal.id
+        });
+
+        if (!duplicate) {
+            saveMatch(matchResults)
+            setAlertMessage("Your pet was successfully saved!")
+
+            setTimeout(() => {
+                setAlertMessage("");
+            }, 3000);
+        } 
+        
+        else {
+            setAlertMessage("no good")
+        }
     }
 
     const handleZipSubmit = (e) => {
@@ -34,8 +42,12 @@ function UserResults({ matchResults, saveMatch }) {
             <header>
                 <h1>Pet MatchMaker</h1>
                 <nav>
-                    <button onClick={goHome}>Home</button>
-                    <button onClick={goToProfile}>Profile</button>
+                    <Link to="/welcome">
+                        <button>Home</button>
+                    </Link>
+                    <Link to="/profile">
+                        <button>Profile</button>
+                    </Link>
                 </nav>
             </header>
             <section>
