@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
 function UserProfile({ currentUser }) {
-    const username = currentUser?.attributes?.username || "Guest"
+    console.log('currentUser', currentUser)
+    const username = currentUser.username || "Guest"
 
     const [submissions, setSubmissions] = useState([])
     const [loading, setLoading] = useState(true)
