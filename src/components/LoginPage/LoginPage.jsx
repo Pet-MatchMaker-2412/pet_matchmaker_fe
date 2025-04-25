@@ -34,6 +34,7 @@ function LoginPage({ setCurrentUser }) {
 
         console.log("USER:", user_info.data);
         setCurrentUser(user_info);
+        window.alert("Login Successful!");
         navigate("/welcome");
 
       } else if (mode === "signup") {
@@ -59,6 +60,7 @@ function LoginPage({ setCurrentUser }) {
 
         const newUser = await addNewUserResponse.json();
         setCurrentUser(newUser);
+        window.alert("Signup Successful! Logging in!");
         navigate("/welcome");
       }
     } catch (error) {
