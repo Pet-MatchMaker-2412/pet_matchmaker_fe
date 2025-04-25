@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 
-function UserResults({ matchResults, saveMatch }) {
+function UserResults({ currentUser, matchResults, saveMatch }) {
     const [zipCode, setZipCode] = useState("")
     const navigate = useNavigate()
     const goHome = () => navigate("/welcome")
