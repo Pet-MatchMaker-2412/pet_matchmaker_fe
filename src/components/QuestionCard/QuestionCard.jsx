@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import questionData from "../../data/QuestionnaireData.json"
 
 function QuestionCard({currentUser, questions, setMatchResults}) {
     const [selectedAnswers, setSelectedAnswers] = useState({})
     const navigate = useNavigate()
+    const questions = questionData.data
 
     const handleSelect = (questionId, answerId) => {
         setSelectedAnswers({
@@ -56,7 +58,7 @@ function QuestionCard({currentUser, questions, setMatchResults}) {
             {questions.map((question) =>(
                 <div key={question.id}>
                     <p>{question.attributes.text}</p>
-                    {question.attributes.answers.map((answer) => (
+                    {question.relationships.answers.data.map((answer) => (
                         <label key={answer.id}>
                             <input
                             type="radio"

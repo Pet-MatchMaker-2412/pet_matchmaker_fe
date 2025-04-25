@@ -14,9 +14,12 @@ import './App.css'
 
 function App() {
     const [currentUser, setCurrentUser] = useState(null)
+    const [savedPets, setSavedPets] = useState([])
     const [matchResults, setMatchResults] = useState(null)
-   
-
+    
+    const saveMatch = (pet) => {
+        setSavedPets([...savedPets, pet])
+    }
     return (
         <Router>
             <Routes>
@@ -26,7 +29,7 @@ function App() {
                 <Route path="/resources" element={<ResourcesPage />} />
                 <Route path='/questionnaire' element={<QuestionnairePage currentUser={currentUser} setMatchResults={setMatchResults}/>} />
                 <Route path='/resources' element={<ResourcesPage />} />
-                <Route path='/results' element={<UserResults currentUser={currentUser} matchResults={matchResults}/>} />
+                <Route path='/results' element={<UserResults currentUser={currentUser} matchResults={matchResults} saveMatch={saveMatch} />} />
                 <Route path='/petfinder' element={<PetFinderResults />} />
             </Routes>
         </Router>
