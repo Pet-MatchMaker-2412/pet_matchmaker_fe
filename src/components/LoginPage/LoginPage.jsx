@@ -64,6 +64,27 @@ function LoginPage({ setCurrentUser }) {
     } catch (error) {
       console.error(error.message);
       setError(error.message || "An error occurred during login.");
+
+      try {
+            const response = await fetch(`http://localhost:3000/api/v1/users?username=${username}`);
+
+            
+            if (!response.ok) {
+              throw new Error(`Response status: ${response.status}`);
+            }
+        
+            const user_info = await response.json();
+            if (!user_info) {
+              setError("User name not found");
+              return;
+            }
+        console.log("USER:",user_info.data)
+            setCurrentUser(user_info.data); 
+            navigate("/welcome");
+          } catch (error) {
+            console.error(error.message);
+            setError(error.message || "An error occurred during login.");
+          }
     }
   };
 
