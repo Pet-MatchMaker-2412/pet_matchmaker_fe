@@ -14,6 +14,12 @@ function QuestionCard({currentUser, questions, setMatchResults}) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
+
+        if (!currentUser || !currentUser.id) {
+            console.error("Current user is missing or invalid.");
+            alert("Please log in before submitting the questionnaire.");
+            return;
+        }
     
         const totalQuestions = questions.length
         const totalAnswered = Object.keys(selectedAnswers).length
@@ -23,7 +29,8 @@ function QuestionCard({currentUser, questions, setMatchResults}) {
             return
         }
 
-        const answerIds = Object.values(selectedAnswers)
+        const answerIds = Object.values(selectedAnswers).map(id => parseInt(id))
+
 
         fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/questionnaire_submissions`, {
             method: "POST",
