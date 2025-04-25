@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react"
 import QuestionCard from "../QuestionCard/QuestionCard";
 
-function QuestionnairePage() {
+function QuestionnairePage({ currentUser, setMatchResults}) {
+    const navigate = useNavigate()
     const [questions, setQuestions] = useState([])
 
     useEffect(() => {
@@ -26,7 +27,7 @@ function QuestionnairePage() {
                 </nav>
             </header>
             <section>
-                <QuestionCard />
+                <QuestionCard currentUser={currentUser} questions={questions} setMatchResults={setMatchResults} />
             </section>
         </main>
     )

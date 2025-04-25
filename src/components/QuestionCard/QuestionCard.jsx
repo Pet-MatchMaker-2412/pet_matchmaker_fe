@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import questionData from "../../data/QuestionnaireData.json"
 
-function QuestionCard() {
+function QuestionCard({currentUser, questions, setMatchResults}) {
     const [selectedAnswers, setSelectedAnswers] = useState({})
     const navigate = useNavigate()
     const questions = questionData.data
@@ -15,11 +15,42 @@ function QuestionCard() {
     }
 
     const handleSubmit = (e) => {
-        e.preventDefault(); 
+        e.preventDefault()
 
-        // add validation
-        console.log("Submitted Answers:", selectedAnswers)
-        navigate("/results")
+        if (!currentUser || !currentUser.id) {
+            console.error("Current user is missing or invalid.");
+            alert("Please log in before submitting the questionnaire.");
+            return;
+        }
+    
+        const totalQuestions = questions.length
+        const totalAnswered = Object.keys(selectedAnswers).length
+    
+        if (totalAnswered < totalQuestions) {
+                alert("Please answer all questions before submitting.")
+            return
+        }
+
+        const answerIds = Object.values(selectedAnswers).map(id => parseInt(id))
+
+
+        fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/questionnaire_submissions`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ answer_ids: answerIds }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                const recommendedAnimal = data.data.attributes.recommended_animal.data.attributes
+                const submissionId = data.data.id
+                setMatchResults({ ...recommendedAnimal, submissionId })
+                navigate("/results")
+            })
+            .catch((err) => {
+                console.error("Failed to submit questionnaire:", err)
+            });
     }
 
     return (

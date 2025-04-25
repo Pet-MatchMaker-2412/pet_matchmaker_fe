@@ -1,31 +1,51 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-// 
 
-
-function UserResults({ matchResults, saveMatch }) {
+function UserResults({ currentUser, matchResults, saveMatch }) {
     const [zipCode, setZipCode] = useState("")
     const [alertMessage, setAlertMessage] = useState("")
     const navigate = useNavigate()
 
-    const saveCurrentMatch = () => {
-        const duplicate = savedPets.find((pet) => {
-            return pet.recommended_animal.id === matchResults.recommended_animal.id
-        });
+// <<<<<<< connect-results-to-be
+    
 
-        if (!duplicate) {
-            saveMatch(matchResults)
-            setAlertMessage("Your pet was successfully saved!")
+    const saveCurrentMatch = (submissionId) => {
+        fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/questionnaire_submissions/${submissionId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ saved: true }),
+        })
+            .then((res) => res.json())
+            .then(() => {
+                alert("Pet saved successfully!")
+            })
+            .catch((err) => {
+                console.error("Failed to save pet:", err)
+            })
+    };
 
-            setTimeout(() => {
-                setAlertMessage("");
-            }, 3000);
-        } 
+// =======
+//     const saveCurrentMatch = () => {
+//         const duplicate = savedPets.find((pet) => {
+//             return pet.recommended_animal.id === matchResults.recommended_animal.id
+//         });
+
+//         if (!duplicate) {
+//             saveMatch(matchResults)
+//             setAlertMessage("Your pet was successfully saved!")
+
+//             setTimeout(() => {
+//                 setAlertMessage("");
+//             }, 3000);
+//         } 
         
-        else {
-            setAlertMessage("no good")
-        }
-    }
+//         else {
+//             setAlertMessage("no good")
+//         }
+//     }
+// >>>>>>> main
 
     const handleZipSubmit = (e) => {
         e.preventDefault()
@@ -52,11 +72,12 @@ function UserResults({ matchResults, saveMatch }) {
             </header>
             <section>
                 <h2>Your Suggested Pet:</h2>
-                <p>{matchResults.type}</p>
-                <img src={matchResults.photo_url} alt={`A cute little ${matchResults.type}`} />
-                <button onClick={saveCurrentMatch}>Save Pet</button>
-
-                {alertMessage ? <p>{alertMessage}</p> : null}
+                <p>{matchResults.animal_type}</p>
+                <img src={matchResults.photo_url} alt={`A cute little ${matchResults.animal_type}`} />
+                <p>{matchResults.description}</p>
+                <button onClick={() => saveCurrentMatch(matchResults.submissionId)}>
+                    Save Pet
+                </button>
             </section>
             <section>
                 <form onSubmit={handleZipSubmit}>
