@@ -1,11 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import questionData from "../../data/QuestionnaireData.json"
+
 
 function QuestionCard({currentUser, questions, setMatchResults}) {
     const [selectedAnswers, setSelectedAnswers] = useState({})
     const navigate = useNavigate()
-    const questions = questionData.data
 
     const handleSelect = (questionId, answerId) => {
         setSelectedAnswers({
@@ -16,13 +15,7 @@ function QuestionCard({currentUser, questions, setMatchResults}) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-
-        if (!currentUser || !currentUser.id) {
-            console.error("Current user is missing or invalid.");
-            alert("Please log in before submitting the questionnaire.");
-            return;
-        }
-    
+ 
         const totalQuestions = questions.length
         const totalAnswered = Object.keys(selectedAnswers).length
     
@@ -42,15 +35,19 @@ function QuestionCard({currentUser, questions, setMatchResults}) {
             body: JSON.stringify({ answer_ids: answerIds }),
         })
             .then((res) => res.json())
-            .then((data) => {
+            .then((data) => { 
+                console.log('currentUser id', currentUser.id)
+                console.log('data', data)
                 const recommendedAnimal = data.data.attributes.recommended_animal.data.attributes
                 const submissionId = data.data.id
                 setMatchResults({ ...recommendedAnimal, submissionId })
-                navigate("/results")
+                navigate("/results") 
+                // this could be refactored to a Link tag
             })
             .catch((err) => {
                 console.error("Failed to submit questionnaire:", err)
             });
+            
     }
 
     return (
@@ -58,7 +55,7 @@ function QuestionCard({currentUser, questions, setMatchResults}) {
             {questions.map((question) =>(
                 <div key={question.id}>
                     <p>{question.attributes.text}</p>
-                    {question.relationships.answers.data.map((answer) => (
+                    {question.attributes.answers.map((answer) => (
                         <label key={answer.id}>
                             <input
                             type="radio"

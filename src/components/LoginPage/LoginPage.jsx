@@ -33,7 +33,10 @@ function LoginPage({ setCurrentUser }) {
         }
 
         console.log("USER:", user_info.data);
-        setCurrentUser(user_info);
+        setCurrentUser({
+            id: user_info.data.id,
+            username: user_info.data.attributes.username
+          });
         window.alert("Login Successful!");
         navigate("/welcome");
 
@@ -59,7 +62,10 @@ function LoginPage({ setCurrentUser }) {
         }
 
         const newUser = await addNewUserResponse.json();
-        setCurrentUser(newUser);
+        setCurrentUser({
+            id: newUser.data.id,
+            username: newUser.data.attributes.username
+          });
         window.alert("Signup Successful! Logging in!");
         navigate("/welcome");
       }
