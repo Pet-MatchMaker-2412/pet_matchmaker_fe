@@ -36,13 +36,10 @@ function QuestionCard({currentUser, questions, setMatchResults}) {
         })
             .then((res) => res.json())
             .then((data) => { 
-                console.log('currentUser id', currentUser.id)
-                console.log('data', data)
                 const recommendedAnimal = data.data.attributes.recommended_animal.data.attributes
                 const submissionId = data.data.id
                 setMatchResults({ ...recommendedAnimal, submissionId })
                 navigate("/results") 
-                // this could be refactored to a Link tag
             })
             .catch((err) => {
                 console.error("Failed to submit questionnaire:", err)
