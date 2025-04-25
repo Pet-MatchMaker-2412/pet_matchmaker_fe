@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react"
 import QuestionCard from "../QuestionCard/QuestionCard";
 
-
 function QuestionnairePage() {
     const [questions, setQuestions] = useState([])
 
@@ -27,7 +26,7 @@ function QuestionnairePage() {
                 </nav>
             </header>
             <section>
-                <QuestionCard questions={questions} />
+                <QuestionCard />
             </section>
         </main>
     )
