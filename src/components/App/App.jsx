@@ -14,10 +14,8 @@ import './App.css'
 
 function App() {
     const [currentUser, setCurrentUser] = useState(null)
-    const [matchResults, setMatchResults] = useState(() => {
-        const mockPet = resultsData.data[0].recommended_animal.data.attributes
-        return mockPet
-    })
+    const [matchResults, setMatchResults] = useState(null)
+   
 
     return (
         <Router>
