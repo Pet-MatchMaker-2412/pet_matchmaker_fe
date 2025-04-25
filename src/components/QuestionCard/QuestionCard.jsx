@@ -27,7 +27,7 @@ function QuestionCard({currentUser, questions, setMatchResults}) {
         const answerIds = Object.values(selectedAnswers).map(id => parseInt(id))
 
 
-        fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/questionnaire_submissions`, {
+        fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users/${currentUser.id}/questionnaire_submissions`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

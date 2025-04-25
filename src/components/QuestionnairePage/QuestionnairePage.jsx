@@ -6,7 +6,7 @@ function QuestionnairePage({ currentUser, setMatchResults}) {
     const [questions, setQuestions] = useState([])
 
     useEffect(() => {
-        fetch("http://localhost:3000/api/v1/questions")
+        fetch("https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/questions")
         .then((response) => response.json())
         .then((data) => setQuestions(data.data))
         .catch((err) => console.error("Failed to fetch questions:", err))
