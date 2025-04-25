@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import QuestionCard from "../QuestionCard/QuestionCard";
 
 
-function QuestionnairePage({setMatchResults}) {
+function QuestionnairePage({ currentUser, setMatchResults}) {
     const navigate = useNavigate()
     const [questions, setQuestions] = useState([])
 
@@ -27,7 +27,7 @@ function QuestionnairePage({setMatchResults}) {
                 </nav>
             </header>
             <section>
-                <QuestionCard questions={questions} setMatchResults={setMatchResults} />
+                <QuestionCard currentUser={currentUser} questions={questions} setMatchResults={setMatchResults} />
             </section>
         </main>
     )
