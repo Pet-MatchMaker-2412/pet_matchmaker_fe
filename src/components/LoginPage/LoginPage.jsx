@@ -6,6 +6,7 @@ function LoginPage({ setCurrentUser }) {
   const [username, setUsername] = useState("");
   const [error, setError] = useState(null);
   const [mode, setMode] = useState();
+  const [hoveredButton, setHoveredButton] = useState(null);
   const navigate = useNavigate();
 
 
@@ -79,11 +80,12 @@ function LoginPage({ setCurrentUser }) {
             onChange={(e) => setUsername(e.target.value)}
         />
 
-        <div className="mode-toggle">
+        <div className="mode-toggle" onMouseLeave={() => setHoveredButton(null)}>
             <button
             type="submit"
             className="login"
             onClick={() => setMode("login")}
+            onMouseEnter={() => setHoveredButton("login")}
             >
             Login
             </button>
@@ -91,14 +93,22 @@ function LoginPage({ setCurrentUser }) {
             type="submit"
             className="signup"
             onClick={() => setMode("signup")}
+            onMouseEnter={() => setHoveredButton("signup")}
             >
             Sign Up
             </button>
+
+            {hoveredButton === "login" && (
+                <p className="hover-message">Click Me if You Have a Username!</p>
+            )}
+  
+            {hoveredButton === "signup" && (
+                <p className="hover-message">Fill Out Username and Click Sign Up</p>
+            )}
         </div>
 
         {error && <p style={{ color: "red" }}>{error}</p>}
     </form> 
-
       
     </main>
   );
