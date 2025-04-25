@@ -34,12 +34,13 @@ function QuestionCard({currentUser, questions, setMatchResults}) {
         })
             .then((res) => res.json())
             .then((data) => {
-                const recommendedAnimal = data.data.attributes.recommended_animal.data.attributes;
-                setMatchResults(recommendedAnimal);
-                navigate("/results");
+                const recommendedAnimal = data.data.attributes.recommended_animal.data.attributes
+                const submissionId = data.data.id
+                setMatchResults({ ...recommendedAnimal, submissionId })
+                navigate("/results")
             })
             .catch((err) => {
-                console.error("Failed to submit questionnaire:", err);
+                console.error("Failed to submit questionnaire:", err)
             });
     }
 
