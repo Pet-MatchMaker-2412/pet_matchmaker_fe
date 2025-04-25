@@ -10,9 +10,22 @@ function UserResults({ matchResults, saveMatch }) {
 
     
 
-    const saveCurrentMatch = () => {
-        saveMatch(matchResults)
-        }
+    const saveCurrentMatch = (submissionId) => {
+        fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/questionnaire_submissions/${submissionId}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ saved: true }),
+        })
+            .then((res) => res.json())
+            .then(() => {
+                alert("Pet saved successfully!")
+            })
+            .catch((err) => {
+                console.error("Failed to save pet:", err)
+            })
+    };
 
 
     const handleZipSubmit = (e) => {
@@ -39,7 +52,9 @@ function UserResults({ matchResults, saveMatch }) {
                 <p>{matchResults.animal_type}</p>
                 <img src={matchResults.photo_url} alt={`A cute little ${matchResults.animal_type}`} />
                 <p>{matchResults.description}</p>
-                <button onClick={saveCurrentMatch}>Save Pet</button>
+                <button onClick={() => saveCurrentMatch(matchResults.submissionId)}>
+                    Save Pet
+                </button>
             </section>
             <section>
                 <form onSubmit={handleZipSubmit}>
