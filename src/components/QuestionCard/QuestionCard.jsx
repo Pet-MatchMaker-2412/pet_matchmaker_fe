@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-function QuestionCard({questions, setMatchResults}) {
+function QuestionCard({currentUser, questions, setMatchResults}) {
     const [selectedAnswers, setSelectedAnswers] = useState({})
     const navigate = useNavigate()
 
@@ -24,8 +24,23 @@ function QuestionCard({questions, setMatchResults}) {
         }
 
         const answerIds = Object.values(selectedAnswers)
-        
-        navigate("/results")
+
+        fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/questionnaire_submissions`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ answer_ids: answerIds }),
+        })
+            .then((res) => res.json())
+            .then((data) => {
+                const recommendedAnimal = data.data.attributes.recommended_animal.data.attributes;
+                setMatchResults(recommendedAnimal);
+                navigate("/results");
+            })
+            .catch((err) => {
+                console.error("Failed to submit questionnaire:", err);
+            });
     }
 
     return (
