@@ -1,25 +1,31 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 
 function UserResults({ matchResults, saveMatch }) {
     const [zipCode, setZipCode] = useState("")
-    const navigate = useNavigate()
     const [alertMessage, setAlertMessage] = useState("")
+    const navigate = useNavigate()
 
     const saveCurrentMatch = () => {
-        saveMatch(matchResults)
-        setAlertMessage("Your pet was successfully saved!")
-    
-        setTimeout(() => {
-            setAlertMessage("");
-        }, 3000);
+        const duplicate = savedPets.find((pet) => {
+            return pet.recommended_animal.id === matchResults.recommended_animal.id
+        });
+
+        if (!duplicate) {
+            saveMatch(matchResults)
+            setAlertMessage("Your pet was successfully saved!")
+
+            setTimeout(() => {
+                setAlertMessage("");
+            }, 3000);
+        } 
+        
+        else {
+            setAlertMessage("no good")
+        }
     }
 
-       saveMatch(matchResults)
-    }
-
-   
     const handleZipSubmit = (e) => {
         e.preventDefault()
         navigate("/petfinder", {
