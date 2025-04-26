@@ -69,6 +69,8 @@ const saveCurrentMatch = (submissionId) => {
 };
 
     console.log('matchresults', matchResults)
+    console.log(matchResults.description);
+
     return (
         <main>
             <header>
