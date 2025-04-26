@@ -5,7 +5,7 @@ function PetFinderResults() {
 
     const zipCode = state?.zipCode
     const matchResults = state?.matchResults
-    const petfinderPets = state?petfinderPets || []
+    const petfinderPets = state?.petfinderPets || []
 
     return (
       <main>
