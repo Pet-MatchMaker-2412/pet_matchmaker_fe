@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 function UserResults({ currentUser, matchResults }) {
     const [zipCode, setZipCode] = useState("")
     const navigate = useNavigate()
+    
     const saveCurrentMatch = (submissionId) => {
-        console.log('currentUser', currentUser)
-        fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/questionnaire_submissions/${submissionId}`, {
+        fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users/${currentUser.id}/questionnaire_submissions/${submissionId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
