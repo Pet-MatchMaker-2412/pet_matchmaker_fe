@@ -4,11 +4,11 @@
 
 ### The Problem
 
-Something about people getting animals that aren't right for them and then returning them
+According to the [ASPCA’s National Rehoming Survey,](https://file.scirp.org/pdf/OJAS_2015100914300959.pdf) just over 50% of families who rehome their pets do so due to family, housing, or cost issues. These issues can be because the family may have a member who is allergic to certain pets, because the family does not have an activity level or living space big enough to suit their pet, or they simply cannot afford the cost of care for their pet.
 
 ### The Solution
 
-Something about our questionnaire website
+Pet MatchMaker provides an easy-to-use interface for users to take a simple questionnaire and, based on the results, receive a recommended a type of pet that would be most suitable for their lifestyle and needs. Users can save recommendations to their account and when they're ready, they can input their zipcode to find suitable pets up for adoption near them!
 
 ### Notable Technologies
 
