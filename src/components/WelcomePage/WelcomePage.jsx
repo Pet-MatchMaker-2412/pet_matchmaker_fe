@@ -10,7 +10,7 @@ function WelcomePage() {
   return (
     <main className="welcome-page">
       <header>
-        <h1>🐾 Pet MatchMaker 🐾</h1>
+        <h1 className="welcome-header">🐾 Pet MatchMaker 🐾</h1>
         <nav>
           <button onClick= {goToResources}> Resources</button> 
           {/* switch to links */}
