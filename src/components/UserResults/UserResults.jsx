@@ -1,28 +1,48 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom'
 
 function UserResults({ currentUser, matchResults }) {
     const [zipCode, setZipCode] = useState("")
+    const [savedAnimalTypes, setSavedAnimalTypes] = useState([]);
+
     const navigate = useNavigate()
     
-    const saveCurrentMatch = (submissionId) => {
-        fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users/${currentUser.id}/questionnaire_submissions/${submissionId}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ saved: true }),
+ useEffect(() => {
+    fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users/${currentUser.id}/questionnaire_submissions?saved=true`)
+        .then((response) => response.json())
+        .then((data) => {
+            const previouslySavedAnimals = data.map(sub => sub.animal_type); 
+            setSavedAnimalTypes(previouslySavedAnimals);
         })
-            .then((res) => res.json())
-            .then(() => {
-                alert("Pet saved successfully!")
-            })
-            .catch((err) => {
-                console.error("Failed to save pet:", err)
-            })
-    };
+        .catch((err) => {
+            console.error("Error fetching saved pets:", err);
+        });
+}, [currentUser.id]);
 
+const alreadySaved = savedAnimalTypes.includes(matchResults.animal_type);
+
+const saveCurrentMatch = (submissionId) => {
+    if (alreadySaved) {
+        alert("You have already saved this pet!");
+        return;
+    }
+
+    fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users/${currentUser.id}/questionnaire_submissions/${submissionId}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ saved: true }),
+    })
+        .then((res) => res.json())
+        .then(() => {
+            alert("Pet saved successfully!")
+        })
+        .catch((err) => {
+            console.error("Failed to save pet:", err)
+        });
+};
     const handleZipSubmit = async (e) => {
     e.preventDefault();
 
@@ -92,4 +112,4 @@ function UserResults({ currentUser, matchResults }) {
     )
 }
 
-export default UserResults
+export default UserResults;
