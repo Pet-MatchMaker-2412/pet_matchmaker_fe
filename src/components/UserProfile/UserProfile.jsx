@@ -1,12 +1,13 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
-function UserProfile({ currentUser }) {
+function UserProfile({ currentUser, setMatchResults }) {
     console.log('currentUser', currentUser)
     const username = currentUser.username || "Guest"
 
     const [submissions, setSubmissions] = useState([])
     const [loading, setLoading] = useState(true)
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (currentUser?.id) {
@@ -30,6 +31,11 @@ function UserProfile({ currentUser }) {
             setLoading(false)
         })
     }
+  
+  function seeResults(recommendedAnimal, submissionId) {
+    setMatchResults({ ...recommendedAnimal, submissionId })
+    navigate("/results")
+  }
 
     if (loading) {
         return (
@@ -51,6 +57,7 @@ function UserProfile({ currentUser }) {
             {submissions.length > 0 ? (
                 submissions.map((submission, index) => {
                     const recommendedAnimal = submission?.attributes?.recommended_animal?.data
+                    const submissionId = submission?.attributes?.recommended_animal?.data?.id
 
                     if (!submission?.attributes?.saved) return null
 
@@ -63,7 +70,7 @@ function UserProfile({ currentUser }) {
                                 style={{ maxWidth: '200px' }}
                             />
                             <Link to="/results">
-                                <button>Click for more!</button>
+                                <button onClick={() => seeResults(recommendedAnimal.attributes, submissionId)}>Click for more!</button>
                             </Link>
                         </div>
                     )
