@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import { Link } from 'react-router-dom'
-import { useEffect, useState } from "react"
 
 function UserResults({ currentUser, matchResults }) {
     const [zipCode, setZipCode] = useState("")
