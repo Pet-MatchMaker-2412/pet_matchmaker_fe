@@ -10,10 +10,10 @@ function UserResults({ currentUser, matchResults }) {
 
     useEffect(() => {
         fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/questionnaire_submissions?saved=true`)
-            .then((res) => res.json())
+            .then((response) => response.json())
             .then((data) => {
-                const types = data.map(sub => sub.animal_type); 
-                setSavedAnimalTypes(types);
+                const previouslySavedAnimals = data.map(sub => sub.animal_type); 
+                setSavedAnimalTypes(previouslySavedAnimals);
             })
             .catch((err) => {
                 console.error("Error fetching saved pets:", err);
