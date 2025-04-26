@@ -12,16 +12,21 @@ function UserResults({ currentUser, matchResults }) {
         fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/questionnaire_submissions?saved=true`)
             .then((res) => res.json())
             .then((data) => {
-                const types = data.map(sub => sub.animal_type); // extract just the animal types
-                setSavedAnimalTypes(types); // store in state
+                const types = data.map(sub => sub.animal_type); 
+                setSavedAnimalTypes(types);
             })
             .catch((err) => {
                 console.error("Error fetching saved pets:", err);
             });
     }, [currentUser.id]);
 
+    const alreadySaved = savedAnimalTypes.includes(matchResults.animal_type);
 
-
+    const saveCurrentMatch = (submissionId) => {
+        if (alreadySaved) {
+            alert("You have already saved this pet!");
+            return;
+        }
 
     const saveCurrentMatch = (submissionId) => {
         console.log('currentUser', currentUser)
