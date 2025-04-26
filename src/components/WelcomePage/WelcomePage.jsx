@@ -31,9 +31,6 @@ function WelcomePage() {
         <Link to="/questionnaire">
             <button>Take the Quiz!</button>
         </Link>
-      <footer>
-        Photos provided by Pexels 
-      </footer>
     </main>
   );
 }
