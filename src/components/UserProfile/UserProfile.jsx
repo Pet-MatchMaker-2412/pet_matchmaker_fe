@@ -69,9 +69,7 @@ function UserProfile({ currentUser, setMatchResults }) {
                                 alt={recommendedAnimal?.attributes?.animal_type}
                                 style={{ maxWidth: '200px' }}
                             />
-                            <Link to="/results">
-                                <button onClick={() => seeResults(recommendedAnimal.attributes, submissionId)}>Click for more!</button>
-                            </Link>
+                            <button onClick={() => seeResults(recommendedAnimal.attributes, submissionId)}>Click for more!</button>
                         </div>
                     )
                 })
