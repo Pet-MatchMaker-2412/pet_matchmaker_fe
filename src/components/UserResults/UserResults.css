@@ -1,0 +1,49 @@
+.results section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pet-image {
+    margin: 50px;
+    width: 50%;
+    height: auto;
+    border-radius: 50px;
+    box-shadow: 0px 4px 10px;
+}
+
+.suggested-pet {
+    color: indigo;
+    display: inline-block;
+    border: 2px solid black;
+    padding: 8px 12px; /* adds space inside the border */
+    border-radius: 8px; /* optional: makes corners rounded */
+    margin-bottom: 16px;
+}
+
+.description {
+    margin: 20px;
+    padding: 20px;
+    width: 75%;
+}
+
+.save-pet-button {
+    padding: 10px;
+    margin: 10px;
+}
+
+.zip-form {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    padding: 10px;
+}
+
+#zip {
+    margin: 10px;
+}
+
+.find-pets-button {
+    margin: 10px;
+    padding: 10px;
+}
