@@ -13,7 +13,7 @@ function LoginPage({ setCurrentUser }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url = `http://localhost:3000/api/v1/users?username=${username}`;
+    const url = `https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users?username=${username}`;
 
     if (!username.trim()) {
       setError("Please enter a valid username");
@@ -23,14 +23,17 @@ function LoginPage({ setCurrentUser }) {
     try {
       if (mode === "login") {
         const responseForExistingUser = await fetch(url);
-        if (!responseForExistingUser.ok)
+        
+        if (responseForExistingUser.status === 404) {
+          setError("Hmm, we didn't find that Username. Try Again?");
+        return;
+        }
+
+        if ((!responseForExistingUser.ok)) {
           throw new Error(`Response status: ${responseForExistingUser.status}`);
+        }
 
         const user_info = await responseForExistingUser.json();
-        if (!user_info) {
-          setError("Hmm, we didn't find that Username. Try Again?");
-          return;
-        }
 
         console.log("USER:", user_info.data);
         setCurrentUser({
@@ -38,8 +41,8 @@ function LoginPage({ setCurrentUser }) {
             username: user_info.data.attributes.username
           });
         window.alert("Login Successful!");
-        navigate("/welcome");
-
+        navigate("/welcome")
+        
       } else if (mode === "signup") {
         const responseForNewUser = await fetch(url);
         if (responseForNewUser.ok) {
@@ -47,7 +50,7 @@ function LoginPage({ setCurrentUser }) {
           return;
         }
 
-        const addNewUserResponse = await fetch("http://localhost:3000/api/v1/users", {
+        const addNewUserResponse = await fetch("https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users", {
           method: "POST",
           headers: {
             'Content-Type': 'application/json'
@@ -71,10 +74,10 @@ function LoginPage({ setCurrentUser }) {
       }
     } catch (error) {
       console.error(error.message);
-      setError(error.message || "An error occurred during login.");
+      setError(error.message);
 
       try {
-            const response = await fetch(`http://localhost:3000/api/v1/users?username=${username}`);
+            const response = await fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users?username=${username}`);
 
             
             if (!response.ok) {

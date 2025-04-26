@@ -1,12 +1,69 @@
-# React + Vite
+# Pet MatchMaker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Overview
 
-Currently, two official plugins are available:
+### The Problem
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+According to the [ASPCA’s National Rehoming Survey,](https://file.scirp.org/pdf/OJAS_2015100914300959.pdf) just over 50% of families who rehome their pets do so due to family, housing, or cost issues. These issues can be because the family may have a member who is allergic to certain pets, because the family does not have an activity level or living space big enough to suit their pet, or they simply cannot afford the cost of care for their pet.
 
-## Expanding the ESLint configuration
+### The Solution
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Pet MatchMaker provides an easy-to-use interface for users to take a simple questionnaire and, based on the results, receive a recommended a type of pet that would be most suitable for their lifestyle and needs. Users can save recommendations to their account and when they're ready, they can input their zipcode to find suitable pets up for adoption near them!
+
+### Notable Technologies
+
+- React
+- React Router
+- Cypress
+- Vite
+
+Check out our backend API repo [here!](https://github.com/Pet-MatchMaker-2412/pet_matchmaker_be)
+
+## Running Locally
+
+### Requirements
+
+- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+
+### Setup Steps
+
+1. Clone the repo to your machine: `git clone https://github.com/Pet-MatchMaker-2412/pet_matchmaker_fe.git`
+2. Open the directory: `cd pet_matchmaker_fe`
+3. Install required packages: `npm install`
+4. Start the Vite server: `npm start`
+5. Open your web browser to the local path: [http://localhost:5173/](http://localhost:5173/)
+
+## Highlights/GIFs
+
+![Sign-up & Login Flow](public/login_flow.gif)
+
+![Questionnaire Submission Flow](public/questionnaire_flow.gif)
+
+![Profile to Petfinder Flow](public/petfinder_flow.gif)
+
+## Contributors
+
+### Beverly Green
+
+- [LinkedIn](https://www.linkedin.com/in/beverlylouisegreen/)
+- [GitHub](https://github.com/bevgreen)
+
+### Jaren Garman
+
+- [LinkedIn](https://www.linkedin.com/in/jarengarman/)
+- [GitHub](https://github.com/JarenGarman)
+
+### Jonathan Atkins
+
+- [LinkedIn](https://www.linkedin.com/in/jonathanjatkins/)
+- [GitHub](https://github.com/Jonathan-Atkins)
+
+### Logan Sauer
+
+- [LinkedIn](https://www.linkedin.com/in/ldsauer/)
+- [GitHub](https://github.com/ldsauer)
+
+### Will Fox
+
+- [LinkedIn](https://www.linkedin.com/in/williammacdonaldfox/)
+- [GitHub](https://github.com/willfox0409)

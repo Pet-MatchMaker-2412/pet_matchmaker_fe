@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "./WelcomePage.css"
+import { Link } from "react-router-dom";
 
 function WelcomePage() {
   const navigate = useNavigate()
@@ -12,9 +13,12 @@ function WelcomePage() {
       <header>
         <h1 className="welcome-header">🐾 Pet MatchMaker 🐾</h1>
         <nav>
-          <button onClick= {goToResources}> Resources</button> 
-          {/* switch to links */}
-          <button onClick={goToProfile}>Profile</button>
+          <Link to="/resources">
+            <button>Resources</button>
+          </Link>
+          <Link to="/profile">
+            <button>Profile</button>
+          </Link>
         </nav>
       </header>
       <div className="welcome-message">
@@ -24,7 +28,9 @@ function WelcomePage() {
         By promoting thoughtful pet selection, we hope to strengthen the bond between people and their future companions, 
         leading to happier lives for both.
       </div>
-      <button className="quiz-button" onClick={goToQuestionnaire}>Take the Quiz!</button>
+        <Link to="/questionnaire">
+            <button>Take the Quiz!</button>
+        </Link>
       <footer>
         Photos provided by Pexels 
       </footer>

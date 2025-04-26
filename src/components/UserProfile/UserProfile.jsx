@@ -1,13 +1,14 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import "./UserProfile.css"
 
-function UserProfile({ currentUser }) {
+function UserProfile({ currentUser, setMatchResults }) {
     console.log('currentUser', currentUser)
     const username = currentUser.username || "Guest"
 
     const [submissions, setSubmissions] = useState([])
     const [loading, setLoading] = useState(true)
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (currentUser?.id) {
@@ -18,8 +19,7 @@ function UserProfile({ currentUser }) {
     function displaySavedSubmissions(id) {
 
         setLoading(true)
-        fetch(`http://localhost:3000/api/v1/users/${id}/questionnaire_submissions`)
-        // fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users/${id}/questionnaire_submissions`)
+        fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users/${id}/questionnaire_submissions`)
         .then((response) => response.json())
         .then((data) => {
             if (data && data.data) {
@@ -32,6 +32,11 @@ function UserProfile({ currentUser }) {
             setLoading(false)
         })
     }
+  
+  function seeResults(recommendedAnimal, recommendedAnimalId, submissionId) {
+    setMatchResults({ ...recommendedAnimal, recommended_animal_id: recommendedAnimalId, submissionId })
+    navigate("/results")
+  }
 
     if (loading) {
         return (
@@ -50,32 +55,31 @@ function UserProfile({ currentUser }) {
                 </Link>
             </nav>
             <h2>Your Questionnaire Submissions</h2>
-            <div className="saved-submissions">
-                {submissions.length > 0 ? (
-                    submissions.map((submission, index) => {
-                        const recommendedAnimal = submission?.attributes?.recommended_animal?.data
-                        
-                        if (!submission?.attributes?.saved) return null
-                        
-                        return (
-                            <div key={index} className="submission">
-                                <p>Recommended Pet: {recommendedAnimal?.attributes?.animal_type}</p>
-                                <img
-                                    className="profile-pet"
-                                    src={recommendedAnimal?.attributes?.photo_url}
-                                    alt={recommendedAnimal?.attributes?.animal_type}
-                                    style={{ maxWidth: '200px' }}
-                                    />
-                                <Link to="/results">
-                                    <button className='more-button' >Click for more!</button>
-                                </Link>
-                            </div>
-                        )
-                    })
-                ) : (
-                    <p>No questionnaire submissions yet.</p>
-                )}
-            </div>
+           <div className="saved-submissions">
+            {submissions.length > 0 ? (
+                submissions.map((submission, index) => {
+                    const recommendedAnimal = submission?.attributes?.recommended_animal?.data
+                    const recommendedAnimalId = submission?.attributes?.recommended_animal?.data?.id
+                    const submissionId = submission?.attributes?.recommended_animal?.data?.id
+
+                    if (!submission?.attributes?.saved) return null
+
+                    return (
+                        <div key={index} className="submission">
+                            <p>Recommended Pet: {recommendedAnimal?.attributes?.animal_type}</p>
+                            <img
+                                src={recommendedAnimal?.attributes?.photo_url}
+                                alt={recommendedAnimal?.attributes?.animal_type}
+                                style={{ maxWidth: '200px' }}
+                            />
+                            <button onClick={() => seeResults(recommendedAnimal.attributes, recommendedAnimalId, submissionId)}>Click for more!</button>
+                        </div>
+                    )
+                })
+            ) : (
+                <p>No questionnaire submissions yet.</p>
+            )}
+           </div>
         </main>
     )
 }

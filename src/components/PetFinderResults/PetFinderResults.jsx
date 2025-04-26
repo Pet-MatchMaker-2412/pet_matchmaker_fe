@@ -1,42 +1,58 @@
 import {  useNavigate, useLocation } from "react-router-dom"
 import petfinderData from "../../data/PetFinderData.json"
 import "./PetFinderResults.css"
+import { useLocation, Link } from "react-router-dom"
 
 function PetFinderResults() {
     const { state } = useLocation()
-    const navigate = useNavigate()
-    const goHome = () => navigate('/welcome')
-    const goToProfile = () => navigate('/profile')
 
     const zipCode = state?.zipCode
     const matchResults = state?.matchResults
-    const pet = petfinderData.data.attributes
+    const petfinderPets = state?.petfinderPets || []
 
     return (
-        <main>
+      <main>
           <header>
             <h1>🐾 Pet MatchMaker 🐾</h1>
             <nav>
-              <button onClick={goHome}>Home</button>
-              <button onClick={goToProfile}>Profile</button>
+                  <Link to="/welcome">
+                      <button>Home</button>
+                  </Link>
+                  <Link to="/profile">
+                      <button>Profile</button>
+                  </Link>
             </nav>
           </header>
           <section>
-            <h1>Suggested Pets in {zipCode}!</h1>
-            <h3><strong>Matching pet type: {matchResults?.type}</strong></h3>
-            <article>
-              <h1>{pet.name}</h1>
-              <img className="found-pet-img" src={pet.photo_url} alt={pet.name} style={{ maxWidth: "300px" }} />
-              <p><strong>Species: {pet.species}</strong></p>
-              <p><strong>Age: {pet.age}</strong></p>
-              <p><strong>Gender: {pet.gender}</strong></p>
-              <p><strong>Size: {pet.size}</strong></p>
-              <p><strong>Location: {pet.city}, {pet.state}</strong></p>
-              <p><strong>Description: {pet.description}</strong></p>
-              <button className="inquire-button" onClick={() => window.location.href = `mailto:${pet.email}`}>Inquire About {pet.name}</button>
-            </article>
+              <h2>Suggested Pets in {zipCode}!</h2>
+              <p>Matching pet type: {matchResults?.animal_type}</p>
+
+              {petfinderPets.length > 0 ? (
+                  petfinderPets.map((petWrapper) => {
+                      const pet = petWrapper.attributes;
+
+                      return (
+                          <article key={petWrapper.id}>
+                              <h3>{pet.name}</h3>
+                              <img src={pet.photo_url} alt={pet.name} style={{ maxWidth: "300px" }} />
+                              <p>Species: {pet.species}</p>
+                              <p>Age: {pet.age}</p>
+                              <p>Gender: {pet.gender}</p>
+                              <p>Size: {pet.size}</p>
+                              <p>Location: {pet.city}, {pet.state}</p>
+                              <p>Description: {pet.description}</p>
+                              <a href={`mailto:${pet.email}`}>
+                                  <button>Inquire About {pet.name}</button>
+                              </a>
+                          </article>
+                      );
+                  })
+              ) : (
+                  <p>No pets found. Please try another zip code!</p>
+              )}
           </section>
-        </main>
-      )
+      </main>
+  );
 }
-export default PetFinderResults
+
+export default PetFinderResults;
