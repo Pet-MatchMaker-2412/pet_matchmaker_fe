@@ -37,8 +37,14 @@ function QuestionCard({currentUser, questions, setMatchResults}) {
             .then((res) => res.json())
             .then((data) => { 
                 const recommendedAnimal = data.data.attributes.recommended_animal.data.attributes
+                const recommendedAnimalId = data.data.attributes.recommended_animal.data.id
                 const submissionId = data.data.id
-                setMatchResults({ ...recommendedAnimal, submissionId })
+                console.log('submissionId:', submissionId)
+                console.log('recommendedAnimalId:', recommendedAnimalId)
+                console.log('recommendedAnimal:', recommendedAnimal)
+                setMatchResults({ ...recommendedAnimal, 
+                    recommended_animal_id: recommendedAnimalId,
+                    submissionId})
                 navigate("/results") 
             })
             .catch((err) => {

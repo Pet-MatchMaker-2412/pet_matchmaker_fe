@@ -23,15 +23,30 @@ function UserResults({ currentUser, matchResults }) {
             })
     };
 
-    const handleZipSubmit = (e) => {
-        e.preventDefault()
+    const handleZipSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+        const response = await fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/petfinder_animals?recommended_animal_id=${matchResults.recommended_animal_id}&zipcode=${zipCode}`);
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch PetFinder animals");
+        }
+
+        const data = await response.json();
+        console.log("Fetched PetFinder data:", data);
+
         navigate("/petfinder", {
             state: {
                 zipCode,
-                matchResults
+                matchResults,
+                petfinderPets: data.data 
             }
-        })
-    };
+        });
+    } catch (error) {
+        console.error("Error fetching PetFinder animals:", error);
+    }
+};
 
     console.log('matchresults', matchResults)
     return (
