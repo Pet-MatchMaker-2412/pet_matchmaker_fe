@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 function UserResults({ currentUser, matchResults }) {
     const [zipCode, setZipCode] = useState("")
     const navigate = useNavigate()
+
     const saveCurrentMatch = (submissionId) => {
         console.log('currentUser', currentUser)
         fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/questionnaire_submissions/${submissionId}`, {
@@ -23,15 +24,30 @@ function UserResults({ currentUser, matchResults }) {
             })
     };
 
-    const handleZipSubmit = (e) => {
-        e.preventDefault()
+    const handleZipSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+        const response = await fetch(`http://localhost:3000/api/v1/petfinder_animals?recommended_animal_id=${matchResults.recommended_animal_id}&zipcode=${zipCode}`);
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch PetFinder animals");
+        }
+
+        const data = await response.json();
+        console.log("Fetched PetFinder data:", data);
+
         navigate("/petfinder", {
             state: {
                 zipCode,
-                matchResults
+                matchResults,
+                petfinderPets: data.data 
             }
-        })
-    };
+        });
+    } catch (error) {
+        console.error("Error fetching PetFinder animals:", error);
+    }
+};
 
     console.log('matchresults', matchResults)
     return (
