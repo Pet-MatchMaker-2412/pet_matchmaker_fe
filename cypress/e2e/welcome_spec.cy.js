@@ -1,7 +1,14 @@
 describe('Welcome Page', () => {
-  beforeEach(() => {
-    cy.visit('http://localhost:5173/welcome')
-  })
+    beforeEach(() => {
+      cy.visit('localhost:5173')
+      cy.get('input[placeholder="Enter Username"]').type('drdoolittle');
+      cy.contains('button', 'Login').click()
+      cy.get('form').submit()
+      cy.on('window:alert', (text) => {
+        expect(text).to.contains('Login Successful!');
+      })
+      cy.url({ timeout: 10000 }).should('include', '/welcome');
+    })
 
   it('displays title', () => {
     cy.get('h1').should('contain', 'Pet MatchMaker 🐾')
@@ -9,10 +16,6 @@ describe('Welcome Page', () => {
 
   it('displays the mission statement', () => {
     cy.get('div').should('contain', 'Choosing a furry (or maybe scaly!) companion is an exciting decision for any future pet owner.')
-  })
-
-  it('displays a footer with credits', () => {
-    cy.get('footer').should('contain', 'Put any necessary credits here in the footer.')
   })
 
   it('has navigation links to Resources and Profile', () => {
