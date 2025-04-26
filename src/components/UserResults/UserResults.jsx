@@ -1,10 +1,28 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect,useState } from "react";
+import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom'
 
 function UserResults({ currentUser, matchResults }) {
     const [zipCode, setZipCode] = useState("")
+    const [savedAnimalTypes, setSavedAnimalTypes] = useState([]);
+
     const navigate = useNavigate()
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/questionnaire_submissions?saved=true`)
+            .then((res) => res.json())
+            .then((data) => {
+                const types = data.map(sub => sub.animal_type); // extract just the animal types
+                setSavedAnimalTypes(types); // store in state
+            })
+            .catch((err) => {
+                console.error("Error fetching saved pets:", err);
+            });
+    }, [currentUser.id]);
+
+
+
+
     const saveCurrentMatch = (submissionId) => {
         console.log('currentUser', currentUser)
         fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/questionnaire_submissions/${submissionId}`, {
