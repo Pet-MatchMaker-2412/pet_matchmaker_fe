@@ -1,8 +1,10 @@
 {
-    "data": {
-      "type": "questionnaire_submission",
+  "data": [
+    {
       "id": "1",
+      "type": "questionnaire_submission",
       "attributes": {
+        "user_id": 1,
         "saved": true,
         "submission_answers": {
           "data": [
@@ -10,22 +12,272 @@
               "id": "1",
               "type": "submission_answer",
               "attributes": {
-                "text": "answer"
+                "text": "Moderately active (walks, occasional activity)"
+              }
+            },
+            {
+              "id": "2",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "Small, shared space"
+              }
+            },
+            {
+              "id": "3",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "More than 3 hours/day"
+              }
+            },
+            {
+              "id": "4",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "Yes, I have a cat (not declawed)"
+              }
+            },
+            {
+              "id": "5",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "Companionship/cuddle buddy"
+              }
+            },
+            {
+              "id": "6",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "6+ weeks/year"
+              }
+            },
+            {
+              "id": "7",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "$100+"
+              }
+            },
+            {
+              "id": "8",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "Allergic/sensitive to odor"
+              }
+            },
+            {
+              "id": "9",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "Irregular schedule (freelance)"
+              }
+            },
+            {
+              "id": "10",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "Affectionate and cuddly"
               }
             }
           ]
         },
         "recommended_animal": {
           "data": {
+            "id": "4",
             "type": "recommended_animal",
-            "id": "1",
             "attributes": {
-              "animal_type": "dachshund",
-              "photo_url": "https://photos.com/dachshund",
-              "description": "description"
+              "animal_type": "Mastiff",
+              "photo_url": "https://images.unsplash.com/photo-1675025328975-037de094a7f1?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+              "description": "Your best pet match is a Mastiff! The colossal Mastiff is an ancient, dignified breed. On average these dogs have a lifespan of 6-10 years and can weigh 120-200 pounds! These dogs are extremely loyal, docile, and protective of family. Their size and tendency to be wary of strangers make early training and socialization essential. These dogs are happy to lounge or accompany you on your daily walk. Mastiffs are magnificent pets and they are quite literally a huge commitment, but with the right amount of space will be a joyful addition to your life!"
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "2",
+      "type": "questionnaire_submission",
+      "attributes": {
+        "user_id": 1,
+        "saved": true,
+        "submission_answers": {
+          "data": [
+            {
+              "id": "11",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "Very active (hiking, running daily)"
+              }
+            },
+            {
+              "id": "12",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "House with yard"
+              }
+            },
+            {
+              "id": "13",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "More than 3 hours/day"
+              }
+            },
+            {
+              "id": "14",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "Yes, children under 10"
+              }
+            },
+            {
+              "id": "15",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "Companionship/cuddle buddy"
+              }
+            },
+            {
+              "id": "16",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "1-3 weeks/year"
+              }
+            },
+            {
+              "id": "17",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "$100+"
+              }
+            },
+            {
+              "id": "18",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "Fine with regular grooming/maintenance"
+              }
+            },
+            {
+              "id": "19",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "Home most of the day (remote work, retired)"
+              }
+            },
+            {
+              "id": "20",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "Playful and energetic"
+              }
+            }
+          ]
+        },
+        "recommended_animal": {
+          "data": {
+            "id": "1",
+            "type": "recommended_animal",
+            "attributes": {
+              "animal_type": "Golden Retriever",
+              "photo_url": "https://images.unsplash.com/photo-1625679471452-647335d6cf68?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+              "description": "Your best pet match result is Golden Retriever! These trusting, kind, and gentle dogs stand among America's most popular dog breeds. In weight, they average 50-75 pounds and have an average lifespan of 10-12 years. They are serious workers as they are a common choice for hunting, fieldwork, service dogs, and search and rescue. Goldens are friendly, intelligent, and eager-to-please family dogs. We've matched you with this energetic breed to fit your active lifestyle."
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "17",
+      "type": "questionnaire_submission",
+      "attributes": {
+        "user_id": 1,
+        "saved": true,
+        "submission_answers": {
+          "data": [
+            {
+              "id": "161",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "Very active (hiking, running daily)"
+              }
+            },
+            {
+              "id": "162",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "House with yard"
+              }
+            },
+            {
+              "id": "163",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "More than 3 hours/day"
+              }
+            },
+            {
+              "id": "164",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "Yes, children under 10"
+              }
+            },
+            {
+              "id": "165",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "Companionship/cuddle buddy"
+              }
+            },
+            {
+              "id": "166",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "1-3 weeks/year"
+              }
+            },
+            {
+              "id": "167",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "$100+"
+              }
+            },
+            {
+              "id": "168",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "Fine with regular grooming/maintenance"
+              }
+            },
+            {
+              "id": "169",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "Home most of the day (remote work, retired)"
+              }
+            },
+            {
+              "id": "170",
+              "type": "submission_answer",
+              "attributes": {
+                "text": "Playful and energetic"
+              }
+            }
+          ]
+        },
+        "recommended_animal": {
+          "data": {
+            "id": "1",
+            "type": "recommended_animal",
+            "attributes": {
+              "animal_type": "Golden Retriever",
+              "photo_url": "https://images.unsplash.com/photo-1625679471452-647335d6cf68?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+              "description": "Your best pet match result is Golden Retriever! These trusting, kind, and gentle dogs stand among America's most popular dog breeds. In weight, they average 50-75 pounds and have an average lifespan of 10-12 years. They are serious workers as they are a common choice for hunting, fieldwork, service dogs, and search and rescue. Goldens are friendly, intelligent, and eager-to-please family dogs. We've matched you with this energetic breed to fit your active lifestyle."
             }
           }
         }
       }
     }
-  }
+  ]
+}

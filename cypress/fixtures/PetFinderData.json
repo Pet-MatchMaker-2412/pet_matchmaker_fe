@@ -1,20 +1,116 @@
 {
-    "data": [
-      {
-        "type": "petfinder_animal",
-        "id": "1",
-        "attributes": {
-          "name": "Spot",
-          "photo_url": "https://photos.petfinder.com/photos/pets/42706540/1/?bust=1546042081",
-          "age": "Young",
-          "gender": "Male",
-          "size": "Medium",
-          "species": "Dog",
-          "city": "Jersey City",
-          "state": "NJ",
-          "description": "Spot is an amazing dog",
-          "email": "petfindertechsupport@gmail.com"
-        }
+  "data": [
+    {
+      "id": "76093853",
+      "type": "petfinder_animal",
+      "attributes": {
+        "name": "Ruby",
+        "photo_url": "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/76093853/1/?bust=1745661902",
+        "age": "Adult",
+        "gender": "Female",
+        "size": "Large",
+        "species": "Dog",
+        "city": "St. Augustine",
+        "state": "FL",
+        "description": "Interested in adopting this pet? Text 386-983-2337 or email safepets.neflorida@gmail.com",
+        "email": "safepets.neflorida@gmail.com"
       }
-    ]
-  }
+    },
+    {
+      "id": "75933371",
+      "type": "petfinder_animal",
+      "attributes": {
+        "name": "Nash",
+        "photo_url": "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/75933371/1/?bust=1745379858",
+        "age": "Adult",
+        "gender": "Male",
+        "size": "Medium",
+        "species": "Dog",
+        "city": "Saint Augustine",
+        "state": "FL",
+        "description": "Nash is a 4 year old American fox hound/ golden retriever mix looking for a quiet, loving home. Nash is...",
+        "email": "Fran@aylasacres.org"
+      }
+    },
+    {
+      "id": "75220586",
+      "type": "petfinder_animal",
+      "attributes": {
+        "name": "Silvey",
+        "photo_url": "https://dbw3zep4prcju.cloudfront.net/animal/bcf54264-ce70-475f-9823-fb68c65c8ab0/image/51772649-5a0c-42ec-b647-7f0b144f81cc.jpg?versionId=GMmzZtMrkOrAc4dwX1npQMlZwQxloqVS&bust=1739786210",
+        "age": "Adult",
+        "gender": "Female",
+        "size": "Large",
+        "species": "Dog",
+        "city": "Jacksonville",
+        "state": "FL",
+        "description": "Silvey is a 3 year old Golden Doodle. She is far more poodles though. Golden came from a back yard...",
+        "email": "sosfordogs@gmail.com"
+      }
+    },
+    {
+      "id": "72521834",
+      "type": "petfinder_animal",
+      "attributes": {
+        "name": "Rio",
+        "photo_url": "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/72521834/1/?bust=1745480383",
+        "age": "Young",
+        "gender": "Female",
+        "size": "Medium",
+        "species": "Dog",
+        "city": "Waynesville",
+        "state": "GA",
+        "description": "My sisters and I were found and brought to the rescue. We&amp;#39;ve been treated for our skin issues and loved...",
+        "email": "sgequinerescue@gmail.com"
+      }
+    },
+    {
+      "id": "72521833",
+      "type": "petfinder_animal",
+      "attributes": {
+        "name": "Bahti",
+        "photo_url": "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/72521833/1/?bust=1745479801",
+        "age": "Young",
+        "gender": "Female",
+        "size": "Medium",
+        "species": "Dog",
+        "city": "Waynesville",
+        "state": "GA",
+        "description": "Bahti is a total sweetheart that loves to play with anyone what will play! Adult dogs, puppies, or people, it...",
+        "email": "sgequinerescue@gmail.com"
+      }
+    },
+    {
+      "id": "70535320",
+      "type": "petfinder_animal",
+      "attributes": {
+        "name": "Six",
+        "photo_url": "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/70535320/1/?bust=1745480366",
+        "age": "Adult",
+        "gender": "Male",
+        "size": "Medium",
+        "species": "Dog",
+        "city": "Waynesville",
+        "state": "GA",
+        "description": "Six is a small young boy who is starting to come out of his shell and show his cute little...",
+        "email": "sgequinerescue@gmail.com"
+      }
+    },
+    {
+      "id": "55096357",
+      "type": "petfinder_animal",
+      "attributes": {
+        "name": "Butch",
+        "photo_url": "https://dl5zpyw5k3jeb.cloudfront.net/photos/pets/55096357/1/?bust=1745468396",
+        "age": "Adult",
+        "gender": "Male",
+        "size": "Large",
+        "species": "Dog",
+        "city": "Ocala",
+        "state": "FL",
+        "description": "Are you loooking for a sweet ride or die? Look no further. Butch is a delightful friend and SO SMART!...",
+        "email": "qualityofliferehab@yahoo.com"
+      }
+    }
+  ]
+}
