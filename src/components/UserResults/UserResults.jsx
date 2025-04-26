@@ -7,52 +7,66 @@ function UserResults({ currentUser, matchResults }) {
     const [savedAnimalTypes, setSavedAnimalTypes] = useState([]);
 
     const navigate = useNavigate()
-
-    useEffect(() => {
-        fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/questionnaire_submissions?saved=true`)
-            .then((response) => response.json())
-            .then((data) => {
-                const previouslySavedAnimals = data.map(sub => sub.animal_type); 
-                setSavedAnimalTypes(previouslySavedAnimals);
-            })
-            .catch((err) => {
-                console.error("Error fetching saved pets:", err);
-            });
-    }, [currentUser.id]);
-
-    const alreadySaved = savedAnimalTypes.includes(matchResults.animal_type);
-
-    const saveCurrentMatch = (submissionId) => {
-        if (alreadySaved) {
-            alert("You have already saved this pet!");
-            return;
-        }
     
-        fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/questionnaire_submissions/${submissionId}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ saved: true }),
+ useEffect(() => {
+    fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users/${currentUser.id}/questionnaire_submissions?saved=true`)
+        .then((response) => response.json())
+        .then((data) => {
+            const previouslySavedAnimals = data.map(sub => sub.animal_type); 
+            setSavedAnimalTypes(previouslySavedAnimals);
         })
-            .then((res) => res.json())
-            .then(() => {
-                alert("Pet saved successfully!")
-            })
-            .catch((err) => {
-                console.error("Failed to save pet:", err)
-            });
-    };
+        .catch((err) => {
+            console.error("Error fetching saved pets:", err);
+        });
+}, [currentUser.id]);
 
-    const handleZipSubmit = (e) => {
-        e.preventDefault()
+const alreadySaved = savedAnimalTypes.includes(matchResults.animal_type);
+
+const saveCurrentMatch = (submissionId) => {
+    if (alreadySaved) {
+        alert("You have already saved this pet!");
+        return;
+    }
+
+    fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users/${currentUser.id}/questionnaire_submissions/${submissionId}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ saved: true }),
+    })
+        .then((res) => res.json())
+        .then(() => {
+            alert("Pet saved successfully!")
+        })
+        .catch((err) => {
+            console.error("Failed to save pet:", err)
+        });
+};
+    const handleZipSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+        const response = await fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/petfinder_animals?recommended_animal_id=${matchResults.recommended_animal_id}&zipcode=${zipCode}`);
+
+        if (!response.ok) {
+            throw new Error("Failed to fetch PetFinder animals");
+        }
+
+        const data = await response.json();
+        console.log("Fetched PetFinder data:", data);
+
         navigate("/petfinder", {
             state: {
                 zipCode,
-                matchResults
+                matchResults,
+                petfinderPets: data.data 
             }
-        })
-    };
+        });
+    } catch (error) {
+        console.error("Error fetching PetFinder animals:", error);
+    }
+};
 
     console.log('matchresults', matchResults)
     return (

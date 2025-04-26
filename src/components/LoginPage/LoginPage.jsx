@@ -13,7 +13,7 @@ function LoginPage({ setCurrentUser }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const url = `http://localhost:3000/api/v1/users?username=${username}`;
+    const url = `https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users?username=${username}`;
 
     if (!username.trim()) {
       setError("Please enter a valid username");
@@ -47,7 +47,7 @@ function LoginPage({ setCurrentUser }) {
           return;
         }
 
-        const addNewUserResponse = await fetch("http://localhost:3000/api/v1/users", {
+        const addNewUserResponse = await fetch("https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users", {
           method: "POST",
           headers: {
             'Content-Type': 'application/json'
@@ -74,7 +74,7 @@ function LoginPage({ setCurrentUser }) {
       setError(error.message || "An error occurred during login.");
 
       try {
-            const response = await fetch(`http://localhost:3000/api/v1/users?username=${username}`);
+            const response = await fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users?username=${username}`);
 
             
             if (!response.ok) {

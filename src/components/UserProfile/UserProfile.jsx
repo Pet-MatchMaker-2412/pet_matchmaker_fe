@@ -1,12 +1,13 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
-function UserProfile({ currentUser }) {
+function UserProfile({ currentUser, setMatchResults }) {
     console.log('currentUser', currentUser)
     const username = currentUser.username || "Guest"
 
     const [submissions, setSubmissions] = useState([])
     const [loading, setLoading] = useState(true)
+    const navigate = useNavigate()
 
     useEffect(() => {
         if (currentUser?.id) {
@@ -17,8 +18,7 @@ function UserProfile({ currentUser }) {
     function displaySavedSubmissions(id) {
 
         setLoading(true)
-        fetch(`http://localhost:3000/api/v1/users/${id}/questionnaire_submissions`)
-        // fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users/${id}/questionnaire_submissions`)
+        fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users/${id}/questionnaire_submissions`)
         .then((response) => response.json())
         .then((data) => {
             if (data && data.data) {
@@ -31,6 +31,11 @@ function UserProfile({ currentUser }) {
             setLoading(false)
         })
     }
+  
+  function seeResults(recommendedAnimal, recommendedAnimalId, submissionId) {
+    setMatchResults({ ...recommendedAnimal, recommended_animal_id: recommendedAnimalId, submissionId })
+    navigate("/results")
+  }
 
     if (loading) {
         return (
@@ -52,6 +57,8 @@ function UserProfile({ currentUser }) {
             {submissions.length > 0 ? (
                 submissions.map((submission, index) => {
                     const recommendedAnimal = submission?.attributes?.recommended_animal?.data
+                    const recommendedAnimalId = submission?.attributes?.recommended_animal?.data?.id
+                    const submissionId = submission?.attributes?.recommended_animal?.data?.id
 
                     if (!submission?.attributes?.saved) return null
 
@@ -63,9 +70,7 @@ function UserProfile({ currentUser }) {
                                 alt={recommendedAnimal?.attributes?.animal_type}
                                 style={{ maxWidth: '200px' }}
                             />
-                            <Link to="/results">
-                                <button>Click for more!</button>
-                            </Link>
+                            <button onClick={() => seeResults(recommendedAnimal.attributes, recommendedAnimalId, submissionId)}>Click for more!</button>
                         </div>
                     )
                 })
