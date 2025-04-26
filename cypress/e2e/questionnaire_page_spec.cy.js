@@ -1,44 +1,42 @@
-describe('QuestionnairePage spec', () => {
+describe('Questionnaire Page', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5173/questionnaire')
-  })
+    cy.intercept('GET', '/api/v1/users?username=something_unique', {
+      fixture: 'UserData.json'
+    }).as('getUser');
 
-  it("should display the nav buttons and question content", () => {
-    cy.get("h1")
-    .should("contain", "Pet MatchMaker")
+    cy.intercept('GET', '/api/v1/questions', {
+      fixture: 'QuestionnaireData.json'
+    }).as('getQuestions');
 
-    cy.get("button")
-    .contains("Home")
-    .should("exist")
+    cy.visit('http://localhost:5173');
 
-    cy.get("button")
-    .contains("Profile")
-    .should("exist")
-  })
+    cy.get('input[placeholder="Enter Username"]').type('something_unique');
+    cy.contains('button', 'Login').click();
+    cy.get('form').submit();
+    cy.wait('@getUser');
 
-  it("checks that the QuestionCard is being rendered", () => {
-    cy.get("form")
-    .should("exist")
+    cy.contains('Take the Quiz!').click();
+    cy.wait('@getQuestions');
+  });
 
-    cy.get("button[type='submit']")
-    .should("exist")
-  })
+  it('displays the header and navigation buttons', () => {
+    cy.get('h1').should('contain', 'Pet MatchMaker');
+    cy.contains('button', 'Home').should('exist');
+    cy.contains('button', 'Profile').should('exist');
+  });
 
-  it("should navigate to the home page when clicking the home button", () => {
-    cy.get("button")
-    .contains("Home")
-    .click()
+  it('renders the question form with a submit button', () => {
+    cy.get('form').should('exist');
+    cy.get("button[type='submit']").should('exist');
+  });
 
-    cy.url()
-    .should("include", "/welcome")
-  })
+  it('navigates to the Welcome page when Home is clicked', () => {
+    cy.contains('button', 'Home').click();
+    cy.url().should('include', '/welcome');
+  });
 
-  it("should navigate to the profile page when clicking the profile button", () => {
-    cy.get("button")
-    .contains("Profile")
-    .click()
-
-    cy.url()
-    .should("include", "/profile")
-  })
-})
+  it('navigates to the Profile page when Profile is clicked', () => {
+    cy.contains('button', 'Profile').click();
+    cy.url().should('include', '/profile');
+  });
+});
