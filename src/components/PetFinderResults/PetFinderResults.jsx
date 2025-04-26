@@ -1,4 +1,6 @@
-import { useLocation, Link } from "react-router-dom"
+import {  useLocation } from "react-router-dom"
+import "./PetFinderResults.css"
+import { Link } from "react-router-dom"
 
 function PetFinderResults() {
     const { state } = useLocation()
@@ -10,15 +12,15 @@ function PetFinderResults() {
     return (
       <main>
           <header>
-              <h1>Pet MatchMaker 🐾</h1>
-              <nav>
+            <h1>🐾 Pet MatchMaker 🐾</h1>
+            <nav>
                   <Link to="/welcome">
                       <button>Home</button>
                   </Link>
                   <Link to="/profile">
                       <button>Profile</button>
                   </Link>
-              </nav>
+            </nav>
           </header>
           <section>
               <h2>Suggested Pets in {zipCode}!</h2>

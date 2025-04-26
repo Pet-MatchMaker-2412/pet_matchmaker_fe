@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom'
+import "./UserResults.css"
 
 function UserResults({ currentUser, matchResults }) {
     const [zipCode, setZipCode] = useState("")
@@ -72,29 +73,27 @@ const saveCurrentMatch = (submissionId) => {
     console.log(matchResults.description);
 
     return (
-        <main>
+        <main className="results">
             <header>
-                <h1>Pet MatchMaker</h1>
                 <nav>
                     <Link to="/welcome">
                         <button>Home</button>
                     </Link>
+                <h1>🐾 Pet MatchMaker 🐾</h1>
                     <Link to="/profile">
                         <button>Profile</button>
                     </Link>
                 </nav>
             </header>
             <section>
-                <h2>Your Suggested Pet:</h2>
-                <p>{matchResults.animal_type}</p>
-                <img src={matchResults.photo_url} alt={`A cute little ${matchResults.animal_type}`} />
-                <p>{matchResults.description}</p>
-                <button onClick={() => saveCurrentMatch(matchResults.submissionId)}>
-                    Save Pet
-                </button>
+                <h1>Your Suggested Pet:</h1>
+                <h1 className="suggested-pet">{matchResults.animal_type}</h1>
+                <img className="pet-image" src={matchResults.photo_url} alt={`A cute little ${matchResults.animal_type}`} />
+                <p className="description"><strong>{matchResults.description}</strong></p>
+                <button className="save-pet-button" onClick={() => saveCurrentMatch(matchResults.submissionId)}>Save Pet</button>
             </section>
             <section>
-                <form onSubmit={handleZipSubmit}>
+                <form className="zip-form" onSubmit={handleZipSubmit}>
                     <label htmlFor="zip">Enter Your Zip Code:</label>
                     <input
                         id="zip"
@@ -107,7 +106,7 @@ const saveCurrentMatch = (submissionId) => {
                         onChange={(e) => setZipCode(e.target.value)}
                         required
                     />
-                    <button type="submit">Find Pets Near Me</button>
+                    <button className="find-pets-button" type="submit">Find Pets Near Me</button>
                 </form>
             </section>
         </main>
