@@ -39,11 +39,11 @@ footer {
 }
 
 @keyframes slideshow {
-    0% { background-image: url("./assets/Silly_cat&dog.jpg");}
-    20% { background-image: url("./assets/red_beta.jpg");}
-    40% { background-image: url("./assets/froggies.jpg");}
-    60% { background-image: url("./assets/guinnea_pigs.jpg");}
-    80% { background-image: url("./assets/lizard.jpg");}
-    100% { background-image: url("./assets/Silly_cat&dog.jpg");}
+    0% { background-image: url("/assets/Silly_cat&dog.jpg");}
+    20% { background-image: url("/assets/red_beta.jpg");}
+    40% { background-image: url("/assets/froggies.jpg");}
+    60% { background-image: url("/assets/guinnea_pigs.jpg");}
+    80% { background-image: url("/assets/lizard.jpg");}
+    100% { background-image: url("/assets/Silly_cat&dog.jpg");}
 }
 
