@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import "./UserProfile.css"
 
 function UserProfile({ currentUser }) {
     console.log('currentUser', currentUser)
@@ -41,7 +42,7 @@ function UserProfile({ currentUser }) {
     }
 
     return (
-        <main>
+        <main className='profile'>
             <h1>🐾 {username}'s Pet MatchMaker Profile 🐾</h1>
             <nav>
                 <Link to="/welcome">
