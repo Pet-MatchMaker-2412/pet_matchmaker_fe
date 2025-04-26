@@ -85,6 +85,22 @@ a {
 
 .card_info {
   font-size: 14px;
+}
+
+/* --- Input Fields --- */
+.input {
+  display: flex;
+  flex-direction: column-reverse;
+  position: relative;
+  padding-top: 10px;
+
+  & + .input {
+    margin-top: 10px;
+  }
+}
+
+.input_label {
+  color: #8597a3;
   position: absolute;
   top: 20px;
   transition: all 0.3s;
