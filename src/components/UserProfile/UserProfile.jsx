@@ -42,7 +42,7 @@ function UserProfile({ currentUser }) {
 
     return (
         <main>
-            <h1>{username}'s Pet MatchMaker Profile 🐾</h1>
+            <h1>🐾 {username}'s Pet MatchMaker Profile 🐾</h1>
             <nav>
                 <Link to="/welcome">
                     <button>Welcome Page</button>

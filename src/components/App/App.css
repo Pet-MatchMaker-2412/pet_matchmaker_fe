@@ -17,3 +17,11 @@ nav {
   margin: 5px;
   align-items: center;
 }
+
+img {
+  margin: 50px;
+  width: 50%;
+  height: auto;
+  border-radius: 50px;
+  box-shadow: 0px 4px 10px;
+}

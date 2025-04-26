@@ -16,7 +16,7 @@ function QuestionnairePage({ currentUser, setMatchResults}) {
     return (
         <main className="questionnaire-page">
             <header>
-                <h1>Pet MatchMaker</h1>
+                <h1>🐾 Pet MatchMaker 🐾</h1>
                 <nav>
                     <Link to="/welcome">
                         <button>Home</button>

@@ -100,7 +100,7 @@ function LoginPage({ setCurrentUser }) {
 
   return (
     <main>
-      <h1>Welcome!</h1>
+      <h1>🐾 Welcome! 🐾</h1>
       <h2>Login or Sign Up</h2>
 
       <form className="login-form" onSubmit={handleSubmit}>
