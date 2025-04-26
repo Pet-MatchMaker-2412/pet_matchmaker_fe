@@ -1,119 +1,99 @@
-//these are logans olds tests I copied, they are not passing because it does not know username, says its null
+describe('ResultsPage spec', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:5173');
 
+    cy.intercept('GET', 'https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users?username=drdoolittle', {
+      statusCode: 200,
+      body: {
+        data: {
+          id: '1',
+          attributes: {
+            username: 'drdoolittle'
+          }
+        }
+      }
+    }).as('getUser');
 
+    cy.intercept(
+      'GET',
+      'https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users/*/questionnaire_submissions',
+      { fixture: 'QuestionnaireSubmissionData.json' }
+    ).as('getSubmissions');
 
+    cy.get('input[placeholder="Enter Username"]').type('drdoolittle');
+    cy.contains('button', 'Login').click();
+    cy.get('form').submit();
 
+    cy.on('window:alert', (text) => {
+      expect(text).to.contain('Login Successful!');
+    });
 
-// describe('ResultsPage spec', () => {
-//   beforeEach(() => {
-//     cy.visit('http://localhost:5173/results')
-//   })
+    cy.url({ timeout: 10000 }).should('include', '/welcome');
+    cy.contains('button', 'Profile').click();
 
-//   it("should display the results page and all the content on it", () => {
-//     cy.get("h1")
-//     .should("contain", "Pet MatchMaker")
+    cy.wait('@getSubmissions');
+    cy.get('.submission').should('have.length', 1);
 
-//     cy.get("h2")
-//     .should("contain", "Your Suggested Pet:")
+    cy.intercept(
+      'GET',
+      '/api/v1/users/1/questionnaire_submissions?saved=true', 
+      { fixture: 'QuestionnaireResults.json' }
+    ).as('getQuestionnaireResults');
 
-//     cy.get("p")
-//     .should("contain", "dachshund")
+    cy.contains('button', 'Click for more!').click()
 
-//     cy.get("img")
-//     .should("have.attr", "src")
-//     .and("include", "https://animalcarecentersmyrna.com/wp-content/uploads/2021/08/Untitled-design-2021-08-19T162152.857.png")
+  });
 
-//     cy.get("button")
-//     .contains("Home")
-//     .should("exist")
+  it("should display the results page and all the content on it", () => {
 
-//     cy.get("button")
-//     .contains("Profile")
-//     .should("exist")
+    cy.get("h1")
+      .should("contain", "Pet MatchMaker");
 
-//     cy.get("button")
-//     .contains("Save Pet")
-//     .should("exist")
+    cy.get("h2")
+      .should("contain", "Your Suggested Pet:");
 
-//     cy.get("button")
-//     .contains("Find Pets Near Me")
-//     .should("exist")
+    cy.get("p")
+      .should("contain", 'dachshund');
 
-//     cy.get("label")
-//     .contains("Enter Your Zip Code")
-//     .should("exist")
+    cy.get("button")
+      .contains("Home")
+      .should("exist");
 
-//     cy.get("input")
-//     .should("exist")
-//   })
+    cy.get("button")
+      .contains("Profile")
+      .should("exist");
 
-//   // it("should navigate to the home page when clicking the home button", () => {
-//   //   cy.get("button")
-//   //   .contains("Home")
-//   //   .click()
+    cy.get("button")
+      .contains("Save Pet")
+      .should("exist");
 
-//   //   cy.url()
-//   //   .should("include", "/welcome")
-//   // })
+    cy.get("button")
+      .contains("Find Pets Near Me")
+      .should("exist");
 
-//   // it("should navigate to the profile page when clicking the profile button", () => {
-//   //   cy.get("button")
-//   //   .contains("Profile")
-//   //   .click()
+    cy.get("label")
+      .contains("Enter Your Zip Code")
+      .should("exist");
 
-//   //   cy.url()
-//   //   .should("include", "/profile")
-//   // })
+    cy.get("input")
+      .should("exist");
+  });
 
-// })
+  it("should navigate to the home page when clicking the home button", () => {
+    cy.get("button")
+      .contains("Home")
+      .click();
 
-// describe("Zip Code Form", () => {
-//   beforeEach(() => {
-//     cy.visit("http://localhost:5173/results")
-//   })
+    cy.url()
+      .should("include", "/welcome");
+  });
 
-//   it("should render the zip code input", () => {
-//     cy.get("input[type='text']")
-//     .should("exist")
-//   })
+  it("should navigate to the profile page when clicking the profile button", () => {
+    cy.get("button")
+      .contains("Profile")
+      .click();
 
-//   it("should be required", () => {
-//     cy.get("input[type='text']")
-//     .then((input) => {
-//       expect(input).to.have.attr("required")
-//     })
-//   })
-
-//   it("should not accept more than 5 characters", () => {
-//     cy.get("input[type='text']")
-//     .type("123456")
-//     .should("have.value", "12345")
-//   })
-
-//   it("should not accept less than 5 characters", () => {
-//     cy.get("input[type='text']")
-//     .type("1234")
-//     .then(($input) => {
-//       expect($input[0].checkValidity()).to.be.false
-//     })
-//   })
-
-//   it("should only allow numbers", () => {
-//     cy.get("input[id='zip']")
-//     .type("abcde")
-//     .then(($input) => {
-//       expect($input[0].checkValidity()).to.be.false
-//     })
-//   })
-
-//   // it("should submit and navigate with valid zip", () => {
-//   //   cy.get("input[id='zip']")
-//   //   .type("80550")
-
-//   //   cy.get("form")
-//   //   .submit()
-
-//   //   cy.url()
-//   //   .should("include", "/petfinder")
-//   // })
-// })
+    cy.url()
+      .should("include", "/profile");
+  });
+});

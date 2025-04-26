@@ -12,6 +12,10 @@ describe('Welcome Page', () => {
       { fixture: 'NoQuestionnaireSubmissions.json' }
     ).as('getSubmissions');
 
+    cy.intercept('GET', '/api/v1/questions', {
+      fixture: 'QuestionnaireData.json'
+    }).as('getQuestions');
+
     cy.visit('localhost:5173');
 
     cy.get('input[placeholder="Enter Username"]').type('something_unique');

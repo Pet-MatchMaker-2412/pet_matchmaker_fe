@@ -4,6 +4,12 @@ describe('Questionnaire Page', () => {
       fixture: 'UserData.json'
     }).as('getUser');
 
+    cy.intercept(
+      'GET',
+      'https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users/*/questionnaire_submissions',
+      { fixture: 'QuestionnaireSubmissionData.json' }
+    ).as('getSubmissions');
+
     cy.intercept('GET', '/api/v1/questions', {
       fixture: 'QuestionnaireData.json'
     }).as('getQuestions');
