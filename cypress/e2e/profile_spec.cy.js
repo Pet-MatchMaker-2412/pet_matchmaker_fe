@@ -1,43 +1,78 @@
-describe('user profile when no pets are saved yet', () => {
+describe('User Profile Page with Submissions', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5173/profile')
-  })
+    cy.visit('http://localhost:5173');
 
-  it('shows no saved pets message', () => {
-    cy.get('p').should('contain', 'No pets saved yet. Please complete the questionnaire to save pets.')
-  })
+    cy.intercept('GET', 'https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users?username=drdoolittle', {
+      statusCode: 200,
+      body: {
+        data: {
+          id: '1',
+          attributes: {
+            username: 'drdoolittle'
+          }
+        }
+      }
+    }).as('getUser');
 
-  it('shows users name and title of profile page in h1', () => {
-    cy.get('h1').should('contain', "Guest's Pet MatchMaker Profile 🐾" )
-  })
+    cy.intercept(
+      'GET',
+      'https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users/*/questionnaire_submissions',
+      { fixture: 'QuestionnaireSubmissionData.json' }
+    ).as('getSubmissions');
 
-  it('should see a section for saved pet results', () => {
-    cy.get('h2').should('contain', 'Your Saved Pet Results')
-  })
+    cy.get('input[placeholder="Enter Username"]').type('drdoolittle');
+    cy.contains('button', 'Login').click();
+    cy.get('form').submit();
 
-  it('shows button that navigates to welcome page', () => {
-    cy.contains('Welcome Page').click()
-    cy.url().should('include', '/welcome')
-  })
-})
+    cy.on('window:alert', (text) => {
+      expect(text).to.contain('Login Successful!');
+    });
 
-describe('profile page once a pet has been saved as a result', () => {
+    cy.url({ timeout: 10000 }).should('include', '/welcome');
+    cy.contains('button', 'Profile').click();
+
+    cy.wait('@getSubmissions');
+  });
+
+  it("displays the user's profile header", () => {
+    cy.contains("Pet MatchMaker Profile 🐾").should('exist');
+  });
+
+  it('renders saved questionnaire submissions', () => {
+    cy.get('.submission').should('have.length', 1);
+    cy.contains('Recommended Pet: dachshund').should('exist');
+    cy.get('img[alt="dachshund"]')
+      .should('have.attr', 'src')
+      .and('include', 'dachshund');
+  });
+});
+
+describe('User Profile Page with Mock Data', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:5173/questionnaire')
-    cy.contains('Submit').click()
-    cy.url().should('include', '/results')
-    cy.contains('Save Pet').click()
-    cy.contains('Profile').click()
-  })
+    cy.visit('http://localhost:5173');
+    cy.get('input[placeholder="Enter Username"]').type('drdoolittle');
+    cy.contains('button', 'Login').click();
+    cy.get('form').submit();
 
-  it('contains saved pet type and photo', () =>{
-    cy.contains('Your Saved Pet Results')
-    cy.get('p').should('contain', 'Type:')
-    cy.get('img').should('be.visible')
-  })
+    cy.on('window:alert', (text) => {
+      expect(text).to.contain('Login Successful!');
+    });
 
-  it('shows "click for more" button and navigates to results', () => {
-    cy.contains('Click for more!').click()
-    cy.url().should('include', '/results')
-  })
-})
+    cy.url({ timeout: 10000 }).should('include', '/welcome');
+
+    cy.contains('button', 'Profile').click();
+    cy.contains('button', 'Welcome Page').click();
+
+    cy.intercept(
+      'GET',
+      'https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users/*/questionnaire_submissions',
+      { fixture: 'NoQuestionnaireSubmissions.json' }
+    ).as('getNoSubmissions');
+    cy.contains('button', 'Profile').click();
+    cy.wait('@getNoSubmissions');
+  });
+
+  it('displays the "No questionnaire submissions yet" message when there are no submissions', () => {
+    cy.contains('No questionnaire submissions yet.').should('exist');
+  });
+});
