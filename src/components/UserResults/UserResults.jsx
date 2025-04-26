@@ -6,9 +6,11 @@ function UserResults({ currentUser, matchResults }) {
     const [zipCode, setZipCode] = useState("")
     const navigate = useNavigate()
 
+    console.log('matchResults at Results page:', matchResults)
+
     const saveCurrentMatch = (submissionId) => {
         console.log('currentUser', currentUser)
-        fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/questionnaire_submissions/${submissionId}`, {
+        fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users/${currentUser.id}/questionnaire_submissions/${submissionId}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -28,7 +30,7 @@ function UserResults({ currentUser, matchResults }) {
     e.preventDefault();
 
     try {
-        const response = await fetch(`http://localhost:3000/api/v1/petfinder_animals?recommended_animal_id=${matchResults.recommended_animal_id}&zipcode=${zipCode}`);
+        const response = await fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/petfinder_animals?recommended_animal_id=${matchResults.recommended_animal_id}&zipcode=${zipCode}`);
 
         if (!response.ok) {
             throw new Error("Failed to fetch PetFinder animals");
