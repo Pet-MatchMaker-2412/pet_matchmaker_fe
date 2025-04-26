@@ -32,8 +32,8 @@ function UserProfile({ currentUser, setMatchResults }) {
         })
     }
   
-  function seeResults(recommendedAnimal, submissionId) {
-    setMatchResults({ ...recommendedAnimal, submissionId })
+  function seeResults(recommendedAnimal, recommendedAnimalId, submissionId) {
+    setMatchResults({ ...recommendedAnimal, recommended_animal_id: recommendedAnimalId, submissionId })
     navigate("/results")
   }
 
@@ -57,6 +57,7 @@ function UserProfile({ currentUser, setMatchResults }) {
             {submissions.length > 0 ? (
                 submissions.map((submission, index) => {
                     const recommendedAnimal = submission?.attributes?.recommended_animal?.data
+                    const recommendedAnimalId = submission?.attributes?.recommended_animal?.data?.id
                     const submissionId = submission?.attributes?.recommended_animal?.data?.id
 
                     if (!submission?.attributes?.saved) return null
@@ -69,7 +70,7 @@ function UserProfile({ currentUser, setMatchResults }) {
                                 alt={recommendedAnimal?.attributes?.animal_type}
                                 style={{ maxWidth: '200px' }}
                             />
-                            <button onClick={() => seeResults(recommendedAnimal.attributes, submissionId)}>Click for more!</button>
+                            <button onClick={() => seeResults(recommendedAnimal.attributes, recommendedAnimalId, submissionId)}>Click for more!</button>
                         </div>
                     )
                 })
