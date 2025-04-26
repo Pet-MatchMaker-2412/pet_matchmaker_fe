@@ -16,16 +16,20 @@
     color: indigo;
     display: inline-block;
     border: 2px solid black;
-    padding: 8px 12px; /* adds space inside the border */
-    border-radius: 8px; /* optional: makes corners rounded */
+    padding: 8px 12px; 
+    border-radius: 8px; 
     margin-bottom: 16px;
 }
 
 .description {
-    margin: 20px;
+    margin: 20px auto; 
     padding: 20px;
     width: 75%;
-}
+    background: rgba(255, 255, 255, 0.8); 
+    border-radius: 12px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); 
+    text-align: center; 
+  }
 
 .save-pet-button {
     padding: 10px;

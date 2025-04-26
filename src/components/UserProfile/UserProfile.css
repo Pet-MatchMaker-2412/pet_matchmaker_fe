@@ -1,5 +1,35 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.saved-submissions {
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 30px; 
+    margin-top: 30px;
+}
+
 .submission {
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    width: 250px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.more-button {
+    margin: 20px;
+}
+
+.profile-pet {
+    margin: 0 20px;
+    width: 150px;
+    height: auto;
+    border-radius: 12px;
 }

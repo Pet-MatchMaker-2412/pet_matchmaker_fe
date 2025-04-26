@@ -50,29 +50,32 @@ function UserProfile({ currentUser }) {
                 </Link>
             </nav>
             <h2>Your Questionnaire Submissions</h2>
-            {submissions.length > 0 ? (
-                submissions.map((submission, index) => {
-                    const recommendedAnimal = submission?.attributes?.recommended_animal?.data
-
-                    if (!submission?.attributes?.saved) return null
-
-                    return (
-                        <div key={index} className="submission">
-                            <p>Recommended Pet: {recommendedAnimal?.attributes?.animal_type}</p>
-                            <img
-                                src={recommendedAnimal?.attributes?.photo_url}
-                                alt={recommendedAnimal?.attributes?.animal_type}
-                                style={{ maxWidth: '200px' }}
-                            />
-                            <Link to="/results">
-                                <button>Click for more!</button>
-                            </Link>
-                        </div>
-                    )
-                })
-            ) : (
-                <p>No questionnaire submissions yet.</p>
-            )}
+            <div className="saved-submissions">
+                {submissions.length > 0 ? (
+                    submissions.map((submission, index) => {
+                        const recommendedAnimal = submission?.attributes?.recommended_animal?.data
+                        
+                        if (!submission?.attributes?.saved) return null
+                        
+                        return (
+                            <div key={index} className="submission">
+                                <p>Recommended Pet: {recommendedAnimal?.attributes?.animal_type}</p>
+                                <img
+                                    className="profile-pet"
+                                    src={recommendedAnimal?.attributes?.photo_url}
+                                    alt={recommendedAnimal?.attributes?.animal_type}
+                                    style={{ maxWidth: '200px' }}
+                                    />
+                                <Link to="/results">
+                                    <button className='more-button' >Click for more!</button>
+                                </Link>
+                            </div>
+                        )
+                    })
+                ) : (
+                    <p>No questionnaire submissions yet.</p>
+                )}
+            </div>
         </main>
     )
 }
