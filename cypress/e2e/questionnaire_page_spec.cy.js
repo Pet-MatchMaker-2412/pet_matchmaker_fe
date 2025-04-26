@@ -16,8 +16,8 @@ describe('Questionnaire Page', () => {
 
     cy.visit('http://localhost:5173');
 
-    cy.get('input[placeholder="Enter Username"]').type('something_unique');
-    cy.contains('button', 'Login').click();
+    cy.get('.input').type('something_unique');
+    cy.get('.card_form > :nth-child(2)').click();
     cy.get('form').submit();
     cy.wait('@getUser');
 
