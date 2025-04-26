@@ -41,6 +41,7 @@ describe('User Profile Page with Submissions', () => {
   it('renders saved questionnaire submissions', () => {
     cy.get('.submission').should('have.length', 1);
     cy.contains('Recommended Pet: dachshund').should('exist');
+    cy.contains('button', 'Click for more!').should('exist')
     cy.get('img[alt="dachshund"]')
       .should('have.attr', 'src')
       .and('include', 'dachshund');
