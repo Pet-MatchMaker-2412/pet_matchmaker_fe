@@ -39,8 +39,11 @@ function QuestionCard({currentUser, questions, setMatchResults}) {
                 console.log('currentUser id', currentUser.id)
                 console.log('data', data)
                 const recommendedAnimal = data.data.attributes.recommended_animal.data.attributes
+                const recommendedAnimalId = data.data.attributes.recommended_animal.data.id
                 const submissionId = data.data.id
-                setMatchResults({ ...recommendedAnimal, submissionId })
+                setMatchResults({ ...recommendedAnimal, 
+                    recommended_animal_id: recommendedAnimalId,
+                    submissionId: submissionId})
                 navigate("/results") 
                 // this could be refactored to a Link tag
             })
