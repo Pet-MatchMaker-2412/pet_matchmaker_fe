@@ -20,7 +20,7 @@ function App() {
             <Routes>
                 <Route path="/" element={<LoginPage setCurrentUser={setCurrentUser} />} />
                 <Route path="/welcome" element={<WelcomePage />} />
-                <Route path="/profile" element={<UserProfile currentUser={currentUser}/>} />
+                <Route path="/profile" element={<UserProfile currentUser={currentUser} setMatchResults={setMatchResults}/>} />
                 <Route path="/resources" element={<ResourcesPage />} />
                 <Route path='/questionnaire' element={<QuestionnairePage currentUser={currentUser} setMatchResults={setMatchResults}/>} />
                 <Route path='/resources' element={<ResourcesPage />} />
