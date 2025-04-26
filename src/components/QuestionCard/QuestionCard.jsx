@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./QuestionCard.css"
 
 
 function QuestionCard({currentUser, questions, setMatchResults}) {
@@ -54,12 +55,12 @@ function QuestionCard({currentUser, questions, setMatchResults}) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="question-card" onSubmit={handleSubmit}>
             {questions.map((question) =>(
-                <div key={question.id}>
-                    <p>{question.attributes.text}</p>
+                <div className="q-and-a" key={question.id}>
+                    <p><strong>{question.attributes.text}</strong></p>
                     {question.attributes.answers.map((answer) => (
-                        <label key={answer.id}>
+                        <label className="pawprint" key={answer.id}>
                             <input
                             type="radio"
                             name={`question-${question.id}`}
@@ -72,7 +73,7 @@ function QuestionCard({currentUser, questions, setMatchResults}) {
                     ))}
                 </div>
             ))}
-            <button type="submit">Submit</button>
+            <button className="submit-button" type="submit">Submit</button>
         </form>
     )
 }

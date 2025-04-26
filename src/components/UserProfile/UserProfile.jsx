@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
+import "./UserProfile.css"
 
 function UserProfile({ currentUser, setMatchResults }) {
     console.log('currentUser', currentUser)
@@ -46,14 +47,15 @@ function UserProfile({ currentUser, setMatchResults }) {
     }
 
     return (
-        <main>
-            <h1>{username}'s Pet MatchMaker Profile 🐾</h1>
+        <main className='profile'>
+            <h1>🐾 {username}'s Pet MatchMaker Profile 🐾</h1>
             <nav>
                 <Link to="/welcome">
                     <button>Welcome Page</button>
                 </Link>
             </nav>
             <h2>Your Questionnaire Submissions</h2>
+           <div className="saved-submissions">
             {submissions.length > 0 ? (
                 submissions.map((submission, index) => {
                     const recommendedAnimal = submission?.attributes?.recommended_animal?.data
@@ -77,6 +79,7 @@ function UserProfile({ currentUser, setMatchResults }) {
             ) : (
                 <p>No questionnaire submissions yet.</p>
             )}
+           </div>
         </main>
     )
 }

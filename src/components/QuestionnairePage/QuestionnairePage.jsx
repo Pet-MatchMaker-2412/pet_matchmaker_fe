@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react"
 import QuestionCard from "../QuestionCard/QuestionCard";
+import "./QuestionnairePage.css"
 
 function QuestionnairePage({ currentUser, setMatchResults}) {
     const [questions, setQuestions] = useState([])
@@ -13,9 +14,9 @@ function QuestionnairePage({ currentUser, setMatchResults}) {
     }, [])
 
     return (
-        <main>
+        <main className="questionnaire-page">
             <header>
-                <h1>Pet MatchMaker</h1>
+                <h1>🐾 Pet MatchMaker 🐾</h1>
                 <nav>
                     <Link to="/welcome">
                         <button>Home</button>

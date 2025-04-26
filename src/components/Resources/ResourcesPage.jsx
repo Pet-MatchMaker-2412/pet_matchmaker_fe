@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 function ResourcesPage() {
     return (
         <main>
-            <h1>🐾 PetMatchMaker Resources</h1>
+            <h1>🐾 PetMatchMaker Resources 🐾</h1>
 
             <section>
                 <p><strong>Welcome to the PetMatchMaker Resources page! Whether you're a first-time pet owner or a life-long animal lover, we've gathered trusted resources to help you care for your furry, feathered, or scaly friend.</strong></p>
