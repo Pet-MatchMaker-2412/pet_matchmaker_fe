@@ -1,5 +1,4 @@
-import {  useNavigate, useLocation } from "react-router-dom"
-import petfinderData from "../../data/PetFinderData.json"
+import {  useNavigate, useLocation, Link } from "react-router-dom"
 
 function PetFinderResults() {
     const { state } = useLocation()
