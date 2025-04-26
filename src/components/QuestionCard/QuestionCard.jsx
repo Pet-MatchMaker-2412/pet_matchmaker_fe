@@ -45,7 +45,6 @@ function QuestionCard({currentUser, questions, setMatchResults}) {
                     recommended_animal_id: recommendedAnimalId,
                     submissionId: submissionId})
                 navigate("/results") 
-                // this could be refactored to a Link tag
             })
             .catch((err) => {
                 console.error("Failed to submit questionnaire:", err)
