@@ -1,0 +1,19 @@
+.questionnaire-page {
+    min-height: 100vh;
+    width: 100vw; /* make sure it stretches full width */
+    background-image: url("https://t3.ftcdn.net/jpg/02/98/20/18/360_F_298201821_e90YxH0f6FBwOvcKhynlwF8sNYxlCMsg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.question-card {
+    background-color: palegoldenrod;
+    border-radius: 20px;
+}

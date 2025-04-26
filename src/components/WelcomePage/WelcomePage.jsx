@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import "./WelcomePage.css"
 
 function WelcomePage() {
     const navigate = useNavigate()
@@ -6,7 +7,7 @@ function WelcomePage() {
     const goToQuestionnaire = () => navigate("/questionnaire")
     const goToResources = () => navigate("/resources")
     return (
-      <main>
+      <main className="welcome-page">
       <header>
           <h1>Pet MatchMaker 🐾</h1>
           <nav>
