@@ -17,8 +17,7 @@ function UserProfile({ currentUser }) {
     function displaySavedSubmissions(id) {
 
         setLoading(true)
-        fetch(`http://localhost:3000/api/v1/users/${id}/questionnaire_submissions`)
-        // fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users/${id}/questionnaire_submissions`)
+        fetch(`https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users/${id}/questionnaire_submissions`)
         .then((response) => response.json())
         .then((data) => {
             if (data && data.data) {
