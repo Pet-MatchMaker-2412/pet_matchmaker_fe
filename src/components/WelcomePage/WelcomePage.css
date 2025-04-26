@@ -1,15 +1,15 @@
 .welcome-page {
     position: relative;
     min-height: 100vh;
-    background-image: url("your-image-url.jpg");
+    /* background-image: url("your-image-url.jpg"); */
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
+    animation: slideshow 25s infinite;
 }
 
 .welcome-message {
     width: 50%; 
-    margin: 100px auto 20px auto; 
+    margin: 200px auto 20px auto; 
     text-align: center;
     font-size: 18px;
     background: rgba(255, 255, 255, 0.8); 
@@ -29,5 +29,15 @@ footer {
     bottom: 0;
     padding: 10px;
     font-size: 14px;
-    color: white; /* or whatever matches your design */
-  }
+    color: white; 
+}
+
+@keyframes slideshow {
+    0% { background-image: url("./assets/Silly_cat&dog.jpg");}
+    20% { background-image: url("./assets/red_beta.jpg");}
+    40% { background-image: url("./assets/froggies.jpg");}
+    60% { background-image: url("./assets/guinnea_pigs.jpg");}
+    80% { background-image: url("./assets/lizard.jpg");}
+    100% { background-image: url("./assets/Silly_cat&dog.jpg");}
+}
+

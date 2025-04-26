@@ -26,7 +26,7 @@ function WelcomePage() {
       </div>
       <button className="quiz-button" onClick={goToQuestionnaire}>Take the Quiz!</button>
       <footer>
-        Put any necessary credits here in the footer. 
+        Photos provided by Pexels 
       </footer>
     </main>
   );
