@@ -27,9 +27,7 @@ function UserResults({ currentUser, matchResults }) {
             alert("You have already saved this pet!");
             return;
         }
-
-    const saveCurrentMatch = (submissionId) => {
-        console.log('currentUser', currentUser)
+    
         fetch(`http://localhost:3000/api/v1/users/${currentUser.id}/questionnaire_submissions/${submissionId}`, {
             method: "PATCH",
             headers: {
@@ -43,7 +41,7 @@ function UserResults({ currentUser, matchResults }) {
             })
             .catch((err) => {
                 console.error("Failed to save pet:", err)
-            })
+            });
     };
 
     const handleZipSubmit = (e) => {
@@ -100,4 +98,4 @@ function UserResults({ currentUser, matchResults }) {
     )
 }
 
-export default UserResults
+export default UserResults;
