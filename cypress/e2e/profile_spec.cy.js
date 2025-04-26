@@ -20,8 +20,8 @@ describe('User Profile Page with Submissions', () => {
       { fixture: 'QuestionnaireSubmissionData.json' }
     ).as('getSubmissions');
 
-    cy.get('input[placeholder="Enter Username"]').type('drdoolittle');
-    cy.contains('button', 'Login').click();
+    cy.get('.input').type('drdoolittle');
+    cy.get('.card_form > :nth-child(2)').click();
     cy.get('form').submit();
 
     cy.on('window:alert', (text) => {
@@ -51,7 +51,7 @@ describe('User Profile Page with Submissions', () => {
 describe('User Profile Page with Mock Data', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5173');
-    cy.get('input[placeholder="Enter Username"]').type('drdoolittle');
+    cy.get('.input').type('drdoolittle');
 
     cy.intercept('GET', 'https://pet-matchmaker-api-da76dbdc99ce.herokuapp.com/api/v1/users?username=drdoolittle', {
       statusCode: 200,
@@ -65,7 +65,7 @@ describe('User Profile Page with Mock Data', () => {
       }
     }).as('getUser');
 
-    cy.contains('button', 'Login').click();
+    cy.get('.card_form > :nth-child(2)').click();
     cy.get('form').submit();
 
     cy.on('window:alert', (text) => {

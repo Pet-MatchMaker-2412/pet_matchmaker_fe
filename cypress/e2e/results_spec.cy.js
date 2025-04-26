@@ -20,8 +20,8 @@ describe('ResultsPage spec', () => {
       { fixture: 'QuestionnaireSubmissionData.json' }
     ).as('getSubmissions');
 
-    cy.get('input[placeholder="Enter Username"]').type('drdoolittle');
-    cy.contains('button', 'Login').click();
+    cy.get('.input').type('drdoolittle');
+    cy.get('.card_form > :nth-child(2)').click();
     cy.get('form').submit();
 
     cy.on('window:alert', (text) => {
@@ -49,11 +49,12 @@ describe('ResultsPage spec', () => {
     cy.get("h1")
       .should("contain", "Pet MatchMaker");
 
-    cy.get("h2")
-      .should("contain", "Your Suggested Pet:");
+    cy.get(".results > :nth-child(2) > :nth-child(1)").should(
+      "contain",
+      "Your Suggested Pet:"
+    );
 
-    cy.get("p")
-      .should("contain", 'dachshund');
+    cy.get(".suggested-pet").should("contain", "dachshund");
 
     cy.get("button")
       .contains("Home")
