@@ -35,11 +35,11 @@ Check out our backend API repo [here!](https://github.com/Pet-MatchMaker-2412/pe
 
 ## Highlights/GIFs
 
-![Sign-up & Login Flow](public/login_flow.gif)
+![Sign-up & Login Flow](public/assets/login_flow.webp)
 
-![Questionnaire Submission Flow](public/questionnaire_flow.gif)
+![Questionnaire Submission Flow](public/assets/questionnaire_flow.webp)
 
-![Profile to Petfinder Flow](public/petfinder_flow.gif)
+![Profile to Petfinder Flow](public/assets/petfinder_flow.webp)
 
 ## Contributors
 
